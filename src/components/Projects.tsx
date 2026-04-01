@@ -8,7 +8,10 @@ import {
   Chip,
   Stack,
   Box,
+  Dialog,
+  IconButton,
 } from "@mui/material";
+import { Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import miqImage from "../assets/miq.png";
@@ -23,6 +26,10 @@ import "swiper/css/effect-fade";
 
 const Projects = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const handleOpenImage = (image: string) => setSelectedImage(image);
+  const handleCloseImage = () => setSelectedImage(null);
 
   const projects = [
     {
@@ -81,10 +88,10 @@ const Projects = () => {
           variant="h3"
           gutterBottom
           textAlign="center"
-          sx={{ 
-            mb: 4, 
+          sx={{
+            mb: 4,
             fontWeight: 800,
-            fontSize: { xs: "2rem", md: "3rem" } 
+            fontSize: { xs: "2rem", md: "3rem" },
           }}
         >
           Projects and Professional Work
@@ -129,11 +136,13 @@ const Projects = () => {
                 }}
               >
                 <Box
+                  onClick={() => handleOpenImage(project.image)}
                   sx={{
                     width: "100%",
                     height: { xs: 240, sm: 320, md: 420 },
                     overflow: "hidden",
                     display: "flex",
+                    cursor: "pointer",
                   }}
                 >
                   <CardMedia
@@ -143,8 +152,8 @@ const Projects = () => {
                     sx={{
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover", // Fill the full area
-                      objectPosition: "top", // Ensure the top is never cut off
+                      objectFit: "cover",
+                      objectPosition: "top",
                     }}
                   />
                 </Box>
@@ -163,7 +172,10 @@ const Projects = () => {
                     component="h2"
                     fontWeight="900"
                     color="primary.main"
-                    sx={{ fontSize: { xs: "1.25rem", md: "1.85rem" }, textAlign: { xs: "center", md: "left" } }}
+                    sx={{
+                      fontSize: { xs: "1.25rem", md: "1.85rem" },
+                      textAlign: { xs: "center", md: "left" },
+                    }}
                   >
                     {project.title}
                   </Typography>
@@ -214,6 +226,55 @@ const Projects = () => {
           ))}
         </Swiper>
       </Container>
+
+      {/* Image Lightbox */}
+      <Dialog
+        open={!!selectedImage}
+        onClose={handleCloseImage}
+        maxWidth="lg"
+        PaperProps={{
+          sx: {
+            bgcolor: "transparent",
+            boxShadow: "none",
+            overflow: "hidden",
+            m: { xs: 1, md: 4 },
+          },
+        }}
+      >
+        <Box
+          sx={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <IconButton
+            onClick={handleCloseImage}
+            sx={{
+              position: "absolute",
+              top: 10,
+              right: 10,
+              bgcolor: "rgba(0,0,0,0.5)",
+              color: "white",
+              "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
+              zIndex: 10,
+            }}
+          >
+            <Close />
+          </IconButton>
+          <Box
+            component="img"
+            src={selectedImage || ""}
+            sx={{
+              maxWidth: "100%",
+              maxHeight: "90vh",
+              objectFit: "contain",
+              borderRadius: 2,
+              boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+            }}
+          />
+        </Box>
+      </Dialog>
     </Box>
   );
 };

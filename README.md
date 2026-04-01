@@ -1,5 +1,7 @@
 # Personal Engineering Portfolio - Richard Dewey Hammers
 
+**🌐 View Live Portfolio: [richarddhammers.netlify.app](https://richarddhammers.netlify.app/)**
+
 This repository contains my professional software engineering portfolio, built to showcase my technical expertise, career progression, and the impact I've made through various projects. 
 
 The goal of this site is to provide a comprehensive, interactive look at my journey as a Full-Stack Software Engineer—from my intensive training at Flatiron School to my deep professional experience at Ksense Technology Group.
