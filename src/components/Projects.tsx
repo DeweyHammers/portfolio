@@ -10,8 +10,13 @@ import {
   Box,
   Dialog,
   IconButton,
+  Paper,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import { Close, FiberManualRecord, Star } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import miqImage from "../assets/miq.png";
@@ -31,11 +36,17 @@ const Projects = () => {
   const handleOpenImage = (image: string) => setSelectedImage(image);
   const handleCloseImage = () => setSelectedImage(null);
 
-  const projects = [
+  const otherProjects = [
     {
       title: "MIQ Methane Registry",
-      description:
-        "An enterprise-grade methane emissions registry featuring a complex certificate issuance system, multi-tenant facility management, and independent audit tracking.",
+      summary:
+        "Web platform for tracking methane emissions and issuing compliance certificates across multiple facilities.",
+      points: [
+        "Developed a multi-tenant system for managing facilities and emissions data",
+        "Built certificate issuance workflows with validation layers for regulatory compliance",
+        "Designed database schema using Prisma for complex relational data",
+        "Implemented audit tracking to ensure data integrity and traceability",
+      ],
       tags: [
         "Next.js",
         "TypeScript",
@@ -48,23 +59,15 @@ const Projects = () => {
       image: miqImage,
     },
     {
-      title: "Stock Price Maximizer (SPM)",
-      description:
-        "A high-performance stock analysis platform that leverages OpenAI to analyze and summarize complex financial filings from SEC EDGAR. Features a subscription-based (SPM+) portal with secure payment processing, real-time data insights, and automated price forecasting.",
-      tags: [
-        "Next.js",
-        "TypeScript",
-        "Prisma",
-        "Material UI",
-        "Sentry",
-        "OpenAI",
-      ],
-      image: stockPriceMaximizerImage,
-    },
-    {
       title: "Budgeteer",
-      description:
-        "A comprehensive personal finance application designed for flatiron school as a final project. Features a modern dashboard, budget categorization, and real-time transaction tracking. Built with a Rails API backend and a React/Redux frontend.",
+      summary:
+        "Personal finance app that tracks transactions in real time and helps users manage budgets and spending.",
+      points: [
+        "Built a full-stack application with a React/Redux frontend and Rails API backend",
+        "Designed a modern dashboard for visualizing financial data and trends",
+        "Implemented secure authentication and user-specific data isolation",
+        "Optimized state management for real-time updates and smooth UX",
+      ],
       tags: ["React", "Redux", "Material UI", "Rails API", "Ruby on Rails"],
       image: budgeteerImage,
     },
@@ -74,9 +77,8 @@ const Projects = () => {
     <Box
       id="projects"
       sx={{
-        pt: 4,
-        pb: 15,
-        mb: { xs: 4, md: 8 },
+        pt: { xs: 8, md: 12 },
+        pb: { xs: 10, md: 15 },
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
@@ -86,15 +88,217 @@ const Projects = () => {
       <Container maxWidth="lg">
         <Typography
           variant="h3"
-          gutterBottom
           textAlign="center"
           sx={{
-            mb: 4,
-            fontWeight: 800,
-            fontSize: { xs: "2rem", md: "3rem" },
+            mb: { xs: 4, md: 8 },
+            fontWeight: 900,
+            fontSize: { xs: "2.25rem", md: "3.5rem" },
+            letterSpacing: "-0.02em",
           }}
         >
-          Projects and Professional Work
+          Featured Work
+        </Typography>
+
+        {/* FEATURED PROJECT: SPM - Upgraded to Glassmorphism */}
+        <Paper
+          elevation={0}
+          sx={{
+            mb: { xs: 12, md: 15 },
+            maxWidth: { md: "1100px" },
+            mx: "auto",
+            borderRadius: 6,
+            border: "1px solid rgba(255, 255, 255, 0.4)",
+            background:
+              "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 255, 0.5) 100%)",
+            backdropFilter: "blur(12px)",
+            boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.05)",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: "stretch",
+          }}
+        >
+          {/* Badge */}
+          <Box
+            sx={{
+              position: "absolute",
+              top: { xs: 12, md: 25 },
+              left: { xs: 12, md: 25 },
+              display: "flex",
+              alignItems: "center",
+              gap: { xs: 0.5, md: 1 },
+              bgcolor: "primary.main",
+              color: "white",
+              px: { xs: 1.2, md: 2 },
+              py: { xs: 0.4, md: 0.75 },
+              borderRadius: { xs: 1.5, md: 2 },
+              zIndex: 2,
+              boxShadow: "0 4px 12px rgba(37, 99, 235, 0.3)",
+            }}
+          >
+            <Star sx={{ fontSize: { xs: 14, md: 18 } }} />
+            <Typography
+              variant="subtitle2"
+              fontWeight="800"
+              sx={{ fontSize: { xs: "0.65rem", md: "0.875rem" } }}
+            >
+              FEATURED PROJECT
+            </Typography>
+          </Box>
+
+          {/* Image Container - Darkened for better chart contrast */}
+          <Box
+            onClick={() => handleOpenImage(stockPriceMaximizerImage)}
+            sx={{
+              width: { xs: "100%", sm: "45%" },
+              height: { xs: 260, sm: "auto" },
+              overflow: "hidden",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "stretch",
+              justifyContent: "center",
+              bgcolor: "#0f172a",
+              borderRight: { sm: "1px solid rgba(255,255,255,0.2)" },
+              position: "relative",
+            }}
+          >
+            <Box
+              component="img"
+              src={stockPriceMaximizerImage}
+              alt="Stock Price Maximizer"
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "41% center",
+                filter: "drop-shadow(0px 10px 20px rgba(0,0,0,0.5))", // Adds depth to the image
+              }}
+            />
+          </Box>
+
+          {/* Content Container */}
+          <Box
+            sx={{
+              p: { xs: 3, md: 6 },
+              width: { xs: "100%", sm: "55%" },
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <Typography
+              variant="h4"
+              fontWeight="900"
+              gutterBottom
+              color="primary.main"
+            >
+              Stock Price Maximizer
+            </Typography>
+            <Typography
+              variant="h6"
+              fontWeight="600"
+              sx={{
+                mb: 3,
+                color: "text.primary",
+                lineHeight: 1.4,
+                fontSize: { xs: "1.1rem", md: "1.3rem" },
+              }}
+            >
+              AI-powered platform that analyzes SEC filings and generates
+              simplified financial insights.
+            </Typography>
+
+            <Box sx={{ mb: 4 }}>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ fontSize: { md: "1.1rem" } }}
+              >
+                <strong>Problem:</strong> Complex financial filings are
+                difficult to interpret.
+                <br />
+                <strong>Solution:</strong> Built an AI system that generates
+                simplified, actionable insights.
+              </Typography>
+            </Box>
+
+            <Box sx={{ mb: 4 }}>
+              <Typography
+                variant="h6"
+                fontWeight="800"
+                color="primary"
+                sx={{ mb: 1.5 }}
+              >
+                Key Contributions
+              </Typography>
+              <List disablePadding>
+                {[
+                  "Designed full-stack architecture using Next.js, Prisma, and PostgreSQL",
+                  "Integrated OpenAI to automate data extraction and summarization",
+                  "Implemented efficient server-side data processing pipelines",
+                  "Optimized backend performance to handle large financial datasets efficiently, reducing processing time for key operations.",
+                ].map((text, i) => (
+                  <ListItem key={i} sx={{ px: 0, py: 0.5 }}>
+                    <ListItemIcon sx={{ minWidth: 32 }}>
+                      <FiberManualRecord
+                        sx={{ fontSize: 10, color: "primary.main" }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={text}
+                      slotProps={{
+                        primary: {
+                          variant: "body1",
+                          fontWeight: 500,
+                        },
+                      }}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+
+            <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+              {[
+                "Next.js",
+                "TypeScript",
+                "Prisma",
+                "OpenAI",
+                "Sentry",
+                "Material UI",
+                "PostgreSQL",
+              ].map((tag) => (
+                <Chip
+                  key={tag}
+                  label={tag}
+                  sx={{
+                    fontWeight: 700,
+                    borderRadius: 2,
+                    bgcolor: "rgba(37, 99, 235, 0.08)",
+                    color: "primary.main",
+                    border: "none",
+                    px: 1,
+                    py: 2,
+                    backdropFilter: "blur(4px)", // Subtle blur on chips
+                  }}
+                />
+              ))}
+            </Stack>
+          </Box>
+        </Paper>
+
+        <Typography
+          variant="h4"
+          textAlign="center"
+          sx={{
+            mb: { xs: 4, md: 8 },
+            fontWeight: 900,
+            fontSize: { xs: "1.75rem", md: "2.5rem" },
+            letterSpacing: "-0.02em",
+          }}
+        >
+          More Projects
         </Typography>
 
         <Swiper
@@ -104,11 +308,11 @@ const Projects = () => {
           navigation
           pagination={{ clickable: true }}
           autoplay={{
-            delay: 5000,
+            delay: 6000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          loop={projects.length > 1}
+          loop={otherProjects.length > 1}
           onSwiper={setSwiperInstance}
           style={
             {
@@ -119,7 +323,7 @@ const Projects = () => {
             } as any
           }
         >
-          {projects.map((project, index) => (
+          {otherProjects.map((project, index) => (
             <SwiperSlide key={index}>
               <Card
                 onMouseEnter={() => swiperInstance?.autoplay.stop()}
@@ -132,14 +336,14 @@ const Projects = () => {
                   border: "1px solid rgba(0,0,0,0.05)",
                   borderRadius: 4,
                   mx: { xs: 0, sm: 2, md: 8 },
-                  height: { xs: "auto", md: 680 },
+                  height: { xs: "auto", md: 650 },
                 }}
               >
                 <Box
                   onClick={() => handleOpenImage(project.image)}
                   sx={{
                     width: "100%",
-                    height: { xs: 240, sm: 320, md: 420 },
+                    height: { xs: 240, sm: 320, md: 400 },
                     overflow: "hidden",
                     display: "flex",
                     cursor: "pointer",
@@ -169,39 +373,48 @@ const Projects = () => {
                   <Typography
                     gutterBottom
                     variant="h4"
-                    component="h2"
                     fontWeight="900"
                     color="primary.main"
-                    sx={{
-                      fontSize: { xs: "1.25rem", md: "1.85rem" },
-                      textAlign: { xs: "center", md: "left" },
-                    }}
+                    sx={{ fontSize: { xs: "1.5rem", md: "1.85rem" } }}
                   >
                     {project.title}
                   </Typography>
                   <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{
-                      mb: 2,
-                      lineHeight: 1.5,
-                      display: "-webkit-box",
-                      WebkitLineClamp: { xs: 4, md: 3 },
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                      fontSize: { xs: "0.875rem", md: "1.1rem" },
-                      textAlign: { xs: "center", md: "left" },
-                    }}
+                    variant="h6"
+                    fontWeight="600"
+                    sx={{ mb: 1.5, color: "text.primary", fontSize: "1rem" }}
                   >
-                    {project.description}
+                    {project.summary}
                   </Typography>
+
+                  <List dense disablePadding sx={{ mb: 2 }}>
+                    {project.points.map((point, i) => (
+                      <ListItem key={i} sx={{ px: 0, py: 0.25 }}>
+                        <ListItemIcon sx={{ minWidth: 20 }}>
+                          <FiberManualRecord
+                            sx={{ fontSize: 6, color: "primary.main" }}
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={point}
+                          slotProps={{
+                            primary: {
+                              variant: "body2",
+                              color: "text.secondary",
+                              fontSize: "0.85rem",
+                            },
+                          }}
+                        />
+                      </ListItem>
+                    ))}
+                  </List>
+
                   <Box sx={{ mt: "auto" }}>
                     <Stack
                       direction="row"
                       spacing={1}
                       flexWrap="wrap"
                       useFlexGap
-                      justifyContent={{ xs: "center", md: "flex-start" }}
                     >
                       {project.tags.map((tag) => (
                         <Chip
@@ -214,7 +427,7 @@ const Projects = () => {
                             fontWeight: 700,
                             borderRadius: 1.5,
                             px: 1,
-                            fontSize: "0.7rem",
+                            fontSize: "0.65rem",
                           }}
                         />
                       ))}
@@ -232,12 +445,14 @@ const Projects = () => {
         open={!!selectedImage}
         onClose={handleCloseImage}
         maxWidth="lg"
-        PaperProps={{
-          sx: {
-            bgcolor: "transparent",
-            boxShadow: "none",
-            overflow: "hidden",
-            m: { xs: 1, md: 4 },
+        slotProps={{
+          paper: {
+            sx: {
+              bgcolor: "transparent",
+              boxShadow: "none",
+              overflow: "hidden",
+              m: { xs: 1, md: 4 },
+            },
           },
         }}
       >

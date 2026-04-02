@@ -30,7 +30,8 @@ const Education = () => {
     {
       institution: "Flatiron School",
       degree: "Full Stack Web Development",
-      description: "Intensive software engineering program focused on full-stack web development, covering modern JavaScript (React), Ruby on Rails, and professional software engineering practices.",
+      description:
+        "Intensive software engineering program focused on full-stack web development, modern JavaScript, and production-ready applications.",
       certTitle: "Certificate of Completion",
       year: "2021",
       image: flatironCert,
@@ -38,11 +39,12 @@ const Education = () => {
     {
       institution: "Calvary Chapel Bible College",
       degree: "Associate of Theology",
-      description: "Comprehensive program focused on biblical studies, theology, and practical ministry training.",
+      description:
+        "Comprehensive program focused on biblical studies, theology, and practical ministry training.",
       certTitle: "Associate Degree",
       year: "2012",
       image: ccbcDiploma,
-    }
+    },
   ];
 
   return (
@@ -62,10 +64,10 @@ const Education = () => {
           variant="h3"
           gutterBottom
           textAlign="center"
-          sx={{ 
-            mb: { xs: 2, md: 6 }, 
+          sx={{
+            mb: { xs: 2, md: 6 },
             fontWeight: 800,
-            fontSize: { xs: "2rem", md: "3rem" }
+            fontSize: { xs: "2rem", md: "3rem" },
           }}
         >
           Education & Certifications
@@ -114,17 +116,44 @@ const Education = () => {
               >
                 <Grid container spacing={{ xs: 2, md: 6 }} alignItems="center">
                   <Grid size={{ xs: 12, md: 6 }}>
-                    <Box sx={{ display: "flex", alignItems: "center", mb: 1, justifyContent: { xs: "center", md: "flex-start" } }}>
-                      <School color="primary" sx={{ fontSize: { xs: 28, md: 40 }, mr: 1.5 }} />
-                      <Typography variant="h4" fontWeight="900" color="primary" sx={{ fontSize: { xs: "1.25rem", md: "2.125rem" } }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        mb: 1,
+                        justifyContent: { xs: "center", md: "flex-start" },
+                      }}
+                    >
+                      <School
+                        color="primary"
+                        sx={{ fontSize: { xs: 28, md: 40 }, mr: 1.5 }}
+                      />
+                      <Typography
+                        variant="h4"
+                        fontWeight="900"
+                        color="primary"
+                        sx={{ fontSize: { xs: "1.25rem", md: "2.125rem" } }}
+                      >
                         {edu.institution}
                       </Typography>
                     </Box>
                     <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
-                      <Typography variant="h5" fontWeight="700" gutterBottom sx={{ fontSize: { xs: "1rem", md: "1.5rem" } }}>
+                      <Typography
+                        variant="h5"
+                        fontWeight="700"
+                        gutterBottom
+                        sx={{ fontSize: { xs: "1rem", md: "1.5rem" } }}
+                      >
                         {edu.degree}
                       </Typography>
-                      <Typography variant="body1" color="text.secondary" sx={{ mb: 2, fontSize: { xs: "0.85rem", md: "1.1rem" } }}>
+                      <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{
+                          mb: 2,
+                          fontSize: { xs: "0.85rem", md: "1.1rem" },
+                        }}
+                      >
                         {edu.description}
                       </Typography>
                       <Typography
@@ -155,7 +184,7 @@ const Education = () => {
                         transition: "transform 0.3s ease-in-out",
                         "&:hover": {
                           transform: "scale(1.05)",
-                        }
+                        },
                       }}
                     />
                   </Grid>
@@ -171,16 +200,24 @@ const Education = () => {
         open={!!selectedImage}
         onClose={handleCloseImage}
         maxWidth="lg"
-        PaperProps={{
-          sx: {
-            bgcolor: "transparent",
-            boxShadow: "none",
-            overflow: "hidden",
-            m: { xs: 1, md: 4 },
+        slotProps={{
+          paper: {
+            sx: {
+              bgcolor: "transparent",
+              boxShadow: "none",
+              overflow: "hidden",
+              m: { xs: 1, md: 4 },
+            },
           },
         }}
       >
-        <Box sx={{ position: "relative", display: "flex", justifyContent: "center" }}>
+        <Box
+          sx={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <IconButton
             onClick={handleCloseImage}
             sx={{

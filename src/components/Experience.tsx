@@ -37,7 +37,7 @@ const Experience = () => {
       achievements: [
         {
           icon: <Code color="primary" />,
-          text: "Architected scalable web apps using Next.js and TypeScript.",
+          text: "Built and maintained scalable production applications using Next.js and TypeScript.",
         },
         {
           icon: <Storage color="primary" />,
@@ -45,11 +45,11 @@ const Experience = () => {
         },
         {
           icon: <RocketLaunch color="primary" />,
-          text: "Integrated OpenAI API features to create custom user interfaces that significantly increased user engagement.",
+          text: "Integrated OpenAI to power features that improved how users interact with and understand complex data.",
         },
         {
           icon: <Speed color="primary" />,
-          text: "Sentry integration for real-time error tracking, drastically reducing Mean Time to Resolution (MTTR).",
+          text: "Integrated Sentry for real-time error tracking, reducing Mean Time to Resolution (MTTR).",
         },
         {
           icon: <Work color="primary" />,
@@ -69,11 +69,11 @@ const Experience = () => {
         },
         {
           icon: <RocketLaunch color="primary" />,
-          text: "Brought customers back to the store with excellent customer service.",
+          text: "Delivered consistent customer service in a high-volume environment, contributing to customer retention.",
         },
         {
           icon: <Speed color="primary" />,
-          text: "Built a strong work ethic through years of experience.",
+          text: "Worked across multiple roles in a fast-paced environment, building strong problem-solving and teamwork skills.",
         },
       ],
     },

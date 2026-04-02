@@ -11,7 +11,7 @@ const skillGroups = [
   {
     category: "Frontend",
     icon: <Web sx={{ fontSize: 40 }} />,
-    skills: ["HTML", "CSS", "TypeScript", "React", "Next.js", "Material UI"],
+    skills: ["TypeScript", "React", "Next.js", "Material UI"],
   },
   {
     category: "Backend",
@@ -19,9 +19,9 @@ const skillGroups = [
     skills: [
       "Node.js",
       "PostgreSQL",
-      "Supabase",
-      "Prisma ORM",
-      "Next.js API Routes",
+      "Prisma",
+      "REST APIs",
+      "Server-Side Architecture",
     ],
   },
   {
@@ -30,9 +30,9 @@ const skillGroups = [
     skills: ["Git", "GitLab CI/CD", "Sentry", "Vercel", "Docker"],
   },
   {
-    category: "Integrations",
+    category: "Cloud & APIs",
     icon: <IntegrationInstructions sx={{ fontSize: 40 }} />,
-    skills: ["OpenAI API", "LaunchDarkly", "AWS S3", "SendGrid", "Sentry"],
+    skills: ["OpenAI", "AWS S3", "SendGrid", "LaunchDarkly"],
   },
 ];
 
@@ -54,19 +54,20 @@ const Skills = () => {
           <Typography
             variant="h3"
             gutterBottom
-            sx={{ 
-              fontWeight: 900, 
+            sx={{
+              fontWeight: 900,
               letterSpacing: "-0.02em",
-              fontSize: { xs: "2rem", md: "3rem" } 
+              fontSize: { xs: "2rem", md: "3rem" },
             }}
           >
-            Tech Stack
-          </Typography>          <Typography
+            Technologies I Use
+          </Typography>
+          <Typography
             variant="h6"
             color="text.secondary"
-            sx={{ maxWidth: 600, mx: "auto", fontWeight: 500 }}
+            sx={{ maxWidth: 700, mx: "auto", fontWeight: 500 }}
           >
-            A specialized toolkit for building high-performance, scalable
+            A focused toolkit I use to build scalable, production-ready
             applications.
           </Typography>
         </Box>

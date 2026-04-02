@@ -7,9 +7,8 @@ import {
   Link as MuiLink,
   Avatar,
   Grid,
-  IconButton,
 } from "@mui/material";
-import { GitHub, LinkedIn, Email } from "@mui/icons-material";
+import { GitHub, Email } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
 import profilePic from "../assets/me.jpg";
@@ -39,9 +38,9 @@ const Hero = () => {
                 component="h1"
                 sx={{
                   fontWeight: 900,
-                  fontSize: { xs: "2.5rem", sm: "4rem", md: "5.5rem" },
+                  fontSize: { xs: "2.5rem", sm: "4rem", md: "5rem" },
                   lineHeight: { xs: 1.1, md: 1 },
-                  mb: 3,
+                  mb: 2,
                   letterSpacing: "-0.04em",
                   background:
                     "linear-gradient(135deg, #1e293b 0%, #2563eb 100%)",
@@ -54,86 +53,151 @@ const Hero = () => {
               </Typography>
 
               <Typography
-                variant="h5"
+                variant="h4"
+                component="h2"
                 sx={{
-                  color: "text.secondary",
-                  mb: 5,
-                  fontWeight: 500,
-                  maxWidth: "600px",
-                  lineHeight: 1.6,
+                  fontWeight: 800,
                   fontSize: { xs: "1.1rem", md: "1.5rem" },
+                  color: "primary.main",
+                  mb: 3,
+                  textAlign: { xs: "center", md: "left" },
+                  maxWidth: { md: "max-content" },
+                }}
+              >
+                Full-Stack Engineer building scalable, <br /> high-performance
+                web applications
+              </Typography>
+
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "text.primary",
+                  mb: 2,
+                  fontWeight: 600,
+                  maxWidth: "600px",
+                  lineHeight: 1.5,
+                  fontSize: { xs: "1rem", md: "1.2rem" },
                   textAlign: { xs: "center", md: "left" },
                   mx: { xs: "auto", md: 0 },
                 }}
               >
-                Husband, Father, and{" "}
-                <Box
-                  component="span"
-                  sx={{ color: "primary.main", fontWeight: 800 }}
-                >
-                  Full-Stack Software Engineer
-                </Box>{" "}
-                passionate about building scalable, high-impact web applications.
+                I work primarily with TypeScript, Next.js, and PostgreSQL, and
+                have spent the last 4+ years building and shipping production
+                applications, including systems that integrate AI features into
+                real-world workflows.
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "text.secondary",
+                  mb: 5,
+                  maxWidth: "600px",
+                  lineHeight: 1.6,
+                  fontSize: { xs: "1rem", md: "1.1rem" },
+                  textAlign: { xs: "center", md: "left" },
+                  mx: { xs: "auto", md: 0 },
+                }}
+              >
+                I’m a full-stack developer focused on solving practical
+                problems, optimizing systems, and building applications people
+                actually use.
               </Typography>
 
               <Stack
                 direction="row"
-                spacing={2}
+                spacing={{ xs: 1, sm: 2 }}
                 justifyContent={{ xs: "center", md: "flex-start" }}
-                flexWrap="wrap"
+                alignItems="center"
                 useFlexGap
               >
                 <ScrollLink to="projects" smooth={true} duration={500}>
                   <Button
                     variant="contained"
-                    size="large"
+                    size="medium"
                     sx={{
-                      px: 4,
-                      py: 1.5,
-                      fontSize: "1.1rem",
-                      boxShadow: "0 10px 20px rgba(37, 99, 235, 0.2)",
+                      px: { xs: 1.5, sm: 4 },
+                      py: { xs: 1, sm: 1.5 },
+                      fontSize: { xs: "0.85rem", sm: "1rem" },
+                      fontWeight: 700,
+                      textTransform: "none",
+                      borderRadius: 2,
+                      whiteSpace: "nowrap",
+                      boxShadow: "0 10px 20px rgba(37, 99, 235, 0.15)",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 15px 30px rgba(37, 99, 235, 0.25)",
+                      },
                     }}
                   >
-                    View My Work
+                    View Projects
                   </Button>
                 </ScrollLink>
-                <Stack direction="row" spacing={1}>
-                  <MuiLink
-                    href="https://github.com/DeweyHammers"
-                    target="_blank"
-                    color="inherit"
+
+                <MuiLink
+                  href="https://github.com/DeweyHammers"
+                  target="_blank"
+                  underline="none"
+                >
+                  <Button
+                    variant="outlined"
+                    size="medium"
+                    startIcon={
+                      <GitHub sx={{ display: { xs: "none", sm: "block" } }} />
+                    }
+                    sx={{
+                      px: { xs: 1.5, sm: 3 },
+                      py: { xs: 1, sm: 1.5 },
+                      fontSize: { xs: "0.85rem", sm: "1rem" },
+                      fontWeight: 700,
+                      textTransform: "none",
+                      borderRadius: 2,
+                      borderColor: "rgba(0,0,0,0.1)",
+                      color: "text.primary",
+                      whiteSpace: "nowrap",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        borderColor: "primary.main",
+                        bgcolor: "rgba(37, 99, 235, 0.04)",
+                        transform: "translateY(-2px)",
+                      },
+                    }}
                   >
-                    <IconButton
-                      size="large"
-                      sx={{ bgcolor: "rgba(0,0,0,0.03)" }}
-                    >
-                      <GitHub />
-                    </IconButton>
-                  </MuiLink>
-                  <MuiLink
-                    href="https://www.linkedin.com/in/richard-dewey-hammers/"
-                    target="_blank"
-                    color="inherit"
+                    GitHub
+                  </Button>
+                </MuiLink>
+
+                <MuiLink
+                  href="mailto:hammersdrichard@gmail.com"
+                  underline="none"
+                >
+                  <Button
+                    variant="text"
+                    size="medium"
+                    startIcon={
+                      <Email sx={{ display: { xs: "none", sm: "block" } }} />
+                    }
+                    sx={{
+                      px: { xs: 1, sm: 2 },
+                      py: { xs: 1, sm: 1.5 },
+                      fontSize: { xs: "0.85rem", sm: "1rem" },
+                      fontWeight: 700,
+                      textTransform: "none",
+                      borderRadius: 2,
+                      color: "text.secondary",
+                      whiteSpace: "nowrap",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        color: "primary.main",
+                        bgcolor: "rgba(0,0,0,0.02)",
+                        transform: "translateY(-2px)",
+                      },
+                    }}
                   >
-                    <IconButton
-                      size="large"
-                      sx={{ bgcolor: "rgba(0,0,0,0.03)" }}
-                    >
-                      <LinkedIn />
-                    </IconButton>
-                  </MuiLink>
-                  <MuiLink
-                    href="mailto:hammersdrichard@gmail.com"
-                    color="inherit"
-                  >
-                    <IconButton
-                      size="large"
-                      sx={{ bgcolor: "rgba(0,0,0,0.03)" }}
-                    >
-                      <Email />
-                    </IconButton>
-                  </MuiLink>
-                </Stack>
+                    Contact
+                  </Button>
+                </MuiLink>
               </Stack>
             </motion.div>
           </Grid>
