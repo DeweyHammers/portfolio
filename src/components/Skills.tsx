@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import {
   Storage,
   Web,
-  Terminal,
   IntegrationInstructions,
   AutoAwesome,
   Cloud,
