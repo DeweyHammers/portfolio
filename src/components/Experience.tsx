@@ -57,10 +57,6 @@ const Experience = () => {
           text: "Integrated AI-powered features using OpenAI, improving automation, complex data workflows, and user experiences.",
         },
         {
-          icon: <Psychology color="primary" />,
-          text: "Used AI tools to accelerate development, troubleshoot issues, and refine implementation strategies.",
-        },
-        {
           icon: <Speed color="primary" />,
           text: "Implemented server-side processing for filtering, sorting, and pagination, ensuring scalable handling of large datasets.",
         },
