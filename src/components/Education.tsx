@@ -51,27 +51,61 @@ const Education = () => {
     <Box
       id="education"
       sx={{
-        py: { xs: 4, md: 10 },
-        mb: { xs: 4, md: 8 },
+        pt: { xs: 12, md: 15 },
+        pb: { xs: 20, md: 35 }, // Significant bottom padding to "lower" the background
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        bgcolor: "background.default",
+        position: "relative",
+        overflow: "hidden",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: "10%",
+          right: "10%",
+          width: "500px",
+          height: "500px",
+          background: "radial-gradient(circle, rgba(124, 58, 237, 0.03) 0%, transparent 70%)",
+          filter: "blur(80px)",
+          zIndex: 0,
+        },
       }}
     >
-      <Container maxWidth="lg">
-        <Typography
-          variant="h3"
-          gutterBottom
-          textAlign="center"
-          sx={{
-            mb: { xs: 2, md: 6 },
-            fontWeight: 800,
-            fontSize: { xs: "2rem", md: "3rem" },
-          }}
-        >
-          Education & Certifications
-        </Typography>
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+        <Box sx={{ textAlign: "center", mb: 6 }}>
+          <Box
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 1.5,
+              px: 2.5,
+              py: 1,
+              borderRadius: 50,
+              bgcolor: "rgba(124, 58, 237, 0.1)",
+              border: "1px solid rgba(124, 58, 237, 0.2)",
+              color: "secondary.dark",
+              mb: 3,
+            }}
+          >
+            <School sx={{ fontSize: 16 }} />
+            <Typography variant="subtitle2" fontWeight="800">
+              EDUCATION
+            </Typography>
+          </Box>
+          <Typography
+            variant="h3"
+            gutterBottom
+            sx={{
+              fontWeight: 800,
+              fontSize: { xs: "2rem", md: "3rem" },
+              color: "text.primary",
+            }}
+          >
+            Learning & Growth
+          </Typography>
+        </Box>
 
         <Swiper
           modules={[Navigation, Pagination]}
@@ -82,8 +116,8 @@ const Education = () => {
           style={
             {
               padding: "10px 0 40px 0",
-              "--swiper-navigation-color": "#2563eb",
-              "--swiper-pagination-color": "#2563eb",
+              "--swiper-navigation-color": "#7c3aed",
+              "--swiper-pagination-color": "#7c3aed",
               "--swiper-navigation-size": "24px",
             } as any
           }
@@ -96,13 +130,15 @@ const Education = () => {
                   p: { xs: 2.5, sm: 4, md: 6 },
                   mx: { xs: 0, sm: 2, md: 8 },
                   border: "1px solid rgba(0,0,0,0.05)",
+                  background: "white",
                   position: "relative",
                   overflow: "hidden",
                   minHeight: { xs: "0", md: 450 },
-                  height: { xs: 650, md: "100%" }, // Increased for safety
+                  height: { xs: 650, md: "100%" },
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
+                  boxShadow: "0 10px 30px -5px rgba(0,0,0,0.05)",
                   "&::before": {
                     content: '""',
                     position: "absolute",
@@ -110,12 +146,12 @@ const Education = () => {
                     left: 0,
                     width: "6px",
                     height: "100%",
-                    bgcolor: index === 0 ? "primary.main" : "secondary.main",
+                    bgcolor: index === 0 ? "secondary.main" : "primary.main",
                   },
                 }}
               >
                 <Grid container spacing={{ xs: 2, md: 6 }} alignItems="center">
-                  <Grid size={{ xs: 12, md: 6 }}>
+                  <Grid size={{ xs: 12, md: 7 }}>
                     <Box
                       sx={{
                         display: "flex",
@@ -125,14 +161,16 @@ const Education = () => {
                       }}
                     >
                       <School
-                        color="primary"
-                        sx={{ fontSize: { xs: 28, md: 40 }, mr: 1.5 }}
+                        sx={{ fontSize: { xs: 28, md: 32 }, mr: 1.5, color: "secondary.main" }}
                       />
                       <Typography
                         variant="h4"
                         fontWeight="900"
-                        color="primary"
-                        sx={{ fontSize: { xs: "1.25rem", md: "2.125rem" } }}
+                        sx={{ 
+                          fontSize: { xs: "1.25rem", md: "1.85rem" }, 
+                          color: "text.primary",
+                          whiteSpace: { md: "nowrap" } 
+                        }}
                       >
                         {edu.institution}
                       </Typography>
@@ -142,31 +180,30 @@ const Education = () => {
                         variant="h5"
                         fontWeight="700"
                         gutterBottom
-                        sx={{ fontSize: { xs: "1rem", md: "1.5rem" } }}
+                        sx={{ fontSize: { xs: "1rem", md: "1.5rem" }, color: "secondary.dark" }}
                       >
                         {edu.degree}
                       </Typography>
                       <Typography
                         variant="body1"
-                        color="text.secondary"
                         sx={{
                           mb: 2,
                           fontSize: { xs: "0.85rem", md: "1.1rem" },
+                          color: "text.secondary",
                         }}
                       >
                         {edu.description}
                       </Typography>
                       <Typography
                         variant="subtitle1"
-                        color="text.primary"
                         fontWeight="700"
-                        sx={{ fontSize: { xs: "0.85rem", md: "1rem" } }}
+                        sx={{ fontSize: { xs: "0.85rem", md: "1rem" }, color: "text.primary" }}
                       >
                         {edu.certTitle} • {edu.year}
                       </Typography>
                     </Box>
                   </Grid>
-                  <Grid size={{ xs: 12, md: 6 }}>
+                  <Grid size={{ xs: 12, md: 5 }}>
                     <Box
                       component="img"
                       src={edu.image}
@@ -179,11 +216,11 @@ const Education = () => {
                         objectFit: "contain",
                         borderRadius: 2,
                         boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-                        border: "1px solid rgba(0,0,0,0.1)",
+                        border: "1px solid rgba(0,0,0,0.05)",
                         cursor: "pointer",
                         transition: "transform 0.3s ease-in-out",
                         "&:hover": {
-                          transform: "scale(1.05)",
+                          transform: "scale(1.02)",
                         },
                       }}
                     />

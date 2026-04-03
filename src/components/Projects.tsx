@@ -83,23 +83,58 @@ const Projects = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        bgcolor: "background.paper",
+        position: "relative",
+        overflow: "hidden",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "100%",
+          height: "100%",
+          background:
+            "radial-gradient(circle at center, rgba(37, 99, 235, 0.03) 0%, transparent 80%)",
+          zIndex: 0,
+        },
       }}
     >
-      <Container maxWidth="lg">
-        <Typography
-          variant="h3"
-          textAlign="center"
-          sx={{
-            mb: { xs: 4, md: 8 },
-            fontWeight: 900,
-            fontSize: { xs: "2.25rem", md: "3.5rem" },
-            letterSpacing: "-0.02em",
-          }}
-        >
-          Featured Work
-        </Typography>
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+        <Box sx={{ textAlign: "center", mb: { xs: 4, md: 8 } }}>
+          <Box
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 1.5,
+              px: 2.5,
+              py: 1,
+              borderRadius: 50,
+              bgcolor: "rgba(37, 99, 235, 0.1)",
+              border: "1px solid rgba(37, 99, 235, 0.2)",
+              color: "primary.dark",
+              mb: 3,
+            }}
+          >
+            <Star sx={{ fontSize: 16 }} />
+            <Typography variant="subtitle2" fontWeight="800">
+              PORTFOLIO
+            </Typography>
+          </Box>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 900,
+              fontSize: { xs: "2.25rem", md: "3.5rem" },
+              letterSpacing: "-0.02em",
+              color: "text.primary",
+            }}
+          >
+            Featured Work
+          </Typography>
+        </Box>
 
-        {/* FEATURED PROJECT: SPM - Upgraded to Glassmorphism */}
+        {/* FEATURED PROJECT: SPM - Upgraded to Light Design */}
         <Paper
           elevation={0}
           sx={{
@@ -107,11 +142,9 @@ const Projects = () => {
             maxWidth: { md: "1100px" },
             mx: "auto",
             borderRadius: 6,
-            border: "1px solid rgba(255, 255, 255, 0.4)",
-            background:
-              "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 255, 0.5) 100%)",
-            backdropFilter: "blur(12px)",
-            boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.05)",
+            border: "1px solid rgba(0, 0, 0, 0.05)",
+            background: "white",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.05)",
             position: "relative",
             overflow: "hidden",
             display: "flex",
@@ -147,7 +180,7 @@ const Projects = () => {
             </Typography>
           </Box>
 
-          {/* Image Container - Darkened for better chart contrast */}
+          {/* Image Container */}
           <Box
             onClick={() => handleOpenImage(stockPriceMaximizerImage)}
             sx={{
@@ -158,8 +191,8 @@ const Projects = () => {
               display: "flex",
               alignItems: "stretch",
               justifyContent: "center",
-              bgcolor: "#0f172a",
-              borderRight: { sm: "1px solid rgba(255,255,255,0.2)" },
+              bgcolor: "background.default",
+              borderRight: { sm: "1px solid rgba(0,0,0,0.05)" },
               position: "relative",
             }}
           >
@@ -172,7 +205,8 @@ const Projects = () => {
                 height: "100%",
                 objectFit: "cover",
                 objectPosition: "41% center",
-                filter: "drop-shadow(0px 10px 20px rgba(0,0,0,0.5))", // Adds depth to the image
+                transition: "transform 0.5s ease",
+                "&:hover": { transform: "scale(1.05)" },
               }}
             />
           </Box>
@@ -191,7 +225,7 @@ const Projects = () => {
               variant="h4"
               fontWeight="900"
               gutterBottom
-              color="primary.main"
+              sx={{ color: "text.primary" }}
             >
               Stock Price Maximizer
             </Typography>
@@ -200,7 +234,7 @@ const Projects = () => {
               fontWeight="600"
               sx={{
                 mb: 3,
-                color: "text.primary",
+                color: "text.secondary",
                 lineHeight: 1.4,
                 fontSize: { xs: "1.1rem", md: "1.3rem" },
               }}
@@ -212,8 +246,7 @@ const Projects = () => {
             <Box sx={{ mb: 4 }}>
               <Typography
                 variant="body1"
-                color="text.secondary"
-                sx={{ fontSize: { md: "1.1rem" } }}
+                sx={{ fontSize: { md: "1.1rem" }, color: "text.secondary" }}
               >
                 <strong>Problem:</strong> Complex financial filings are
                 difficult to interpret.
@@ -227,8 +260,7 @@ const Projects = () => {
               <Typography
                 variant="h6"
                 fontWeight="800"
-                color="primary"
-                sx={{ mb: 1.5 }}
+                sx={{ mb: 1.5, color: "primary.main" }}
               >
                 Key Contributions
               </Typography>
@@ -251,6 +283,7 @@ const Projects = () => {
                         primary: {
                           variant: "body1",
                           fontWeight: 500,
+                          sx: { color: "text.primary" },
                         },
                       }}
                     />
@@ -275,12 +308,11 @@ const Projects = () => {
                   sx={{
                     fontWeight: 700,
                     borderRadius: 2,
-                    bgcolor: "rgba(37, 99, 235, 0.08)",
+                    bgcolor: "rgba(37, 99, 235, 0.05)",
                     color: "primary.main",
-                    border: "none",
+                    border: "1px solid rgba(37, 99, 235, 0.1)",
                     px: 1,
                     py: 2,
-                    backdropFilter: "blur(4px)", // Subtle blur on chips
                   }}
                 />
               ))}
@@ -296,6 +328,7 @@ const Projects = () => {
             fontWeight: 900,
             fontSize: { xs: "1.75rem", md: "2.5rem" },
             letterSpacing: "-0.02em",
+            color: "text.primary",
           }}
         >
           More Projects
@@ -334,7 +367,7 @@ const Projects = () => {
                   overflow: "hidden",
                   boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
                   border: "1px solid rgba(0,0,0,0.05)",
-                  borderRadius: 4,
+                  background: "white",
                   mx: { xs: 0, sm: 2, md: 8 },
                   height: { xs: "auto", md: 650 },
                 }}
@@ -358,6 +391,8 @@ const Projects = () => {
                       height: "100%",
                       objectFit: "cover",
                       objectPosition: "top",
+                      transition: "transform 0.5s ease",
+                      "&:hover": { transform: "scale(1.05)" },
                     }}
                   />
                 </Box>
@@ -367,22 +402,23 @@ const Projects = () => {
                     p: { xs: 3, md: 4 },
                     display: "flex",
                     flexDirection: "column",
-                    bgcolor: "white",
                   }}
                 >
                   <Typography
                     gutterBottom
                     variant="h4"
                     fontWeight="900"
-                    color="primary.main"
-                    sx={{ fontSize: { xs: "1.5rem", md: "1.85rem" } }}
+                    sx={{
+                      fontSize: { xs: "1.5rem", md: "1.85rem" },
+                      color: "text.primary",
+                    }}
                   >
                     {project.title}
                   </Typography>
                   <Typography
                     variant="h6"
                     fontWeight="600"
-                    sx={{ mb: 1.5, color: "text.primary", fontSize: "1rem" }}
+                    sx={{ mb: 1.5, color: "text.secondary", fontSize: "1rem" }}
                   >
                     {project.summary}
                   </Typography>
@@ -400,8 +436,10 @@ const Projects = () => {
                           slotProps={{
                             primary: {
                               variant: "body2",
-                              color: "text.secondary",
-                              fontSize: "0.85rem",
+                              sx: {
+                                color: "text.secondary",
+                                fontSize: "0.85rem",
+                              },
                             },
                           }}
                         />
@@ -420,7 +458,6 @@ const Projects = () => {
                         <Chip
                           key={tag}
                           label={tag}
-                          color="primary"
                           variant="outlined"
                           size="small"
                           sx={{
@@ -428,6 +465,8 @@ const Projects = () => {
                             borderRadius: 1.5,
                             px: 1,
                             fontSize: "0.65rem",
+                            color: "primary.main",
+                            borderColor: "rgba(37, 99, 235, 0.2)",
                           }}
                         />
                       ))}

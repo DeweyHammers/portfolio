@@ -2,6 +2,7 @@ import { ThemeProvider, CssBaseline, Box } from "@mui/material";
 import theme from "./theme";
 import Hero from "./components/Hero";
 import Skills from "./components/Skills";
+import AIDevelopment from "./components/AIDevelopment";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Projects from "./components/Projects";
@@ -16,8 +17,7 @@ function App() {
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
-          background:
-            "linear-gradient(135deg, #f0f7ff 0%, #ffffff 50%, #f5f3ff 100%)",
+          background: (theme) => theme.palette.background.default,
           position: "relative",
           overflow: "hidden",
         }}
@@ -25,6 +25,7 @@ function App() {
         <Box sx={{ position: "relative", zIndex: 1 }}>
           <Hero />
           <Skills />
+          <AIDevelopment />
           <Experience />
           <Education />
           <Projects />
