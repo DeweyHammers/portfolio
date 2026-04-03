@@ -6,39 +6,46 @@ import {
   Terminal,
   IntegrationInstructions,
   AutoAwesome,
+  Cloud,
+  Code,
 } from "@mui/icons-material";
 
 const skillGroups = [
   {
+    category: "Languages",
+    icon: <Code sx={{ fontSize: 40 }} />,
+    skills: ["TypeScript", "JavaScript"],
+  },
+  {
     category: "Frontend",
     icon: <Web sx={{ fontSize: 40 }} />,
-    skills: ["TypeScript", "React", "Next.js", "Material UI"],
+    skills: ["React", "Next.js", "Material UI", "Zod"],
   },
   {
     category: "Backend",
-    icon: <Storage sx={{ fontSize: 40 }} />,
-    skills: [
-      "Node.js",
-      "PostgreSQL",
-      "Prisma",
-      "REST APIs",
-      "Server-Side Architecture",
-    ],
-  },
-  {
-    category: "DevOps & Tools",
-    icon: <Terminal sx={{ fontSize: 40 }} />,
-    skills: ["Git", "GitLab CI/CD", "Sentry", "Vercel", "Docker"],
-  },
-  {
-    category: "Cloud & APIs",
     icon: <IntegrationInstructions sx={{ fontSize: 40 }} />,
-    skills: ["AWS S3", "SendGrid", "LaunchDarkly"],
+    skills: ["Node.js", "REST API Development"],
   },
   {
-    category: "AI & Intelligence",
+    category: "Database",
+    icon: <Storage sx={{ fontSize: 40 }} />,
+    skills: ["Prisma", "PostgreSQL", "SQL"],
+  },
+  {
+    category: "Cloud & Tools",
+    icon: <Cloud sx={{ fontSize: 40 }} />,
+    skills: ["AWS S3", "Git", "Vercel", "Supabase", "Sentry", "Jest"],
+  },
+  {
+    category: "AI",
     icon: <AutoAwesome sx={{ fontSize: 40 }} />,
-    skills: ["OpenAI", "Prompt Engineering", "RAG Patterns", "AI Workflows"],
+    skills: [
+      "Google Gemini & CLI",
+      "OpenAI",
+      "Prompt Engineering",
+      "RAG",
+      "AI Workflows",
+    ],
   },
 ];
 

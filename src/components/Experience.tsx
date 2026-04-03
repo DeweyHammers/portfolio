@@ -40,6 +40,7 @@ const Experience = () => {
         "PostgreSQL",
         "GitLab",
         "Sentry",
+        "Google Gemini & CLI",
         "OpenAI",
       ],
       achievements: [
@@ -107,7 +108,8 @@ const Experience = () => {
           left: 0,
           right: 0,
           height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)",
+          background:
+            "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)",
         },
       }}
     >
@@ -128,7 +130,11 @@ const Experience = () => {
             }}
           >
             <Work sx={{ fontSize: 16 }} />
-            <Typography variant="subtitle2" fontWeight="800" letterSpacing="0.05em">
+            <Typography
+              variant="subtitle2"
+              fontWeight="800"
+              letterSpacing="0.05em"
+            >
               EXPERIENCE
             </Typography>
           </Box>
@@ -251,7 +257,10 @@ const Experience = () => {
                                 variant="body1"
                                 fontWeight={500}
                                 lineHeight={1.4}
-                                sx={{ fontSize: { xs: "0.85rem", md: "1rem" }, color: "text.primary" }}
+                                sx={{
+                                  fontSize: { xs: "0.85rem", md: "1rem" },
+                                  color: "text.primary",
+                                }}
                               >
                                 {item.text}
                               </Typography>
@@ -305,7 +314,10 @@ const Experience = () => {
                               fontSize: "0.7rem",
                               color: "text.primary",
                               border: "1px solid rgba(0,0,0,0.1)",
-                              "&:hover": { bgcolor: "primary.main", color: "white" },
+                              "&:hover": {
+                                bgcolor: "primary.main",
+                                color: "white",
+                              },
                             }}
                           />
                         ))}
