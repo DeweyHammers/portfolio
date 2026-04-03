@@ -17,7 +17,6 @@ import {
   Speed,
   RocketLaunch,
   AutoAwesome,
-  Psychology,
 } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
