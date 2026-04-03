@@ -18,7 +18,7 @@ const skillGroups = [
   {
     category: "Frontend",
     icon: <Web sx={{ fontSize: 40 }} />,
-    skills: ["React", "Next.js", "Material UI", "Zod"],
+    skills: ["HTML", "CSS", "React", "Next.js", "Material UI", "Zod"],
   },
   {
     category: "Backend",
