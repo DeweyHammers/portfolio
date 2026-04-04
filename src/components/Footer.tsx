@@ -19,10 +19,13 @@ const Footer = () => {
           alignItems="center"
           spacing={2}
         >
-          <Typography 
-            variant="body2" 
+          <Typography
+            variant="body2"
             color="text.secondary"
-            sx={{ textAlign: { xs: "center", md: "left" } }}
+            sx={{
+              textAlign: { xs: "center", md: "left" },
+              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+            }}
           >
             © {new Date().getFullYear()} Richard Dewey Hammers. Built with React
             & MUI.

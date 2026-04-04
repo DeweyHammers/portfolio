@@ -88,7 +88,7 @@ const Hero = () => {
                   component="h2"
                   sx={{
                     fontWeight: 700,
-                    fontSize: { xs: "1.25rem", md: "1.75rem" },
+                    fontSize: { xs: "1.1rem", md: "1.75rem" },
                     color: "primary.main",
                     mb: 4,
                     textAlign: { xs: "center", md: "left" },

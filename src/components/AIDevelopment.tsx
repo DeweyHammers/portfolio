@@ -1,7 +1,7 @@
 import { Box, Typography, Container, Grid, Paper } from "@mui/material";
 import { motion } from "framer-motion";
 import {
-  AutoAwesome,
+  SettingsSuggest,
   Speed,
   Code,
   Psychology,
@@ -56,7 +56,8 @@ const AIDevelopment = () => {
           left: 0,
           right: 0,
           height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)",
+          background:
+            "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)",
         },
       }}
     >
@@ -76,8 +77,12 @@ const AIDevelopment = () => {
               mb: 3,
             }}
           >
-            <AutoAwesome sx={{ fontSize: 16 }} />
-            <Typography variant="subtitle2" fontWeight="800" letterSpacing="0.05em">
+            <SettingsSuggest sx={{ fontSize: 16 }} />
+            <Typography
+              variant="subtitle2"
+              fontWeight="800"
+              letterSpacing="0.05em"
+            >
               AI INTEGRATION
             </Typography>
           </Box>
@@ -94,9 +99,15 @@ const AIDevelopment = () => {
           </Typography>
           <Typography
             variant="h6"
-            sx={{ maxWidth: 800, mx: "auto", fontWeight: 500, lineHeight: 1.6, color: "text.secondary" }}
+            sx={{
+              maxWidth: 800,
+              mx: "auto",
+              fontWeight: 500,
+              lineHeight: 1.6,
+              color: "text.secondary",
+            }}
           >
-            I leverage artificial intelligence to accelerate development cycles 
+            I leverage artificial intelligence to accelerate development cycles
             and implement smart features that solve complex user problems.
           </Typography>
         </Box>
@@ -151,7 +162,11 @@ const AIDevelopment = () => {
                   </Typography>
                   <Typography
                     variant="body1"
-                    sx={{ fontWeight: 500, lineHeight: 1.7, color: "text.secondary" }}
+                    sx={{
+                      fontWeight: 500,
+                      lineHeight: 1.7,
+                      color: "text.secondary",
+                    }}
                   >
                     {highlight.description}
                   </Typography>

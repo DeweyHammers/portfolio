@@ -4,6 +4,7 @@ import {
   Storage,
   Web,
   IntegrationInstructions,
+  Psychology,
   AutoAwesome,
   Cloud,
   Code,
@@ -37,7 +38,7 @@ const skillGroups = [
   },
   {
     category: "AI",
-    icon: <AutoAwesome sx={{ fontSize: 40 }} />,
+    icon: <Psychology sx={{ fontSize: 40 }} />,
     skills: [
       "Google Gemini & CLI",
       "OpenAI",

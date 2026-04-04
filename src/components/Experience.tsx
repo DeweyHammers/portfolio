@@ -16,7 +16,7 @@ import {
   Storage,
   Speed,
   RocketLaunch,
-  AutoAwesome,
+  Psychology,
 } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -52,8 +52,8 @@ const Experience = () => {
           text: "Developed and optimized APIs and database queries using Prisma and PostgreSQL, improving API response times by up to 40% and reducing overall backend load.",
         },
         {
-          icon: <AutoAwesome color="primary" />,
-          text: "Integrated AI-powered features using OpenAI, improving automation, complex data workflows, and user experiences.",
+          icon: <Psychology color="primary" />,
+          text: "Used AI tools to accelerate development, troubleshoot issues, and refine implementation strategies.",
         },
         {
           icon: <Speed color="primary" />,
