@@ -5,8 +5,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Chip,
-  Stack,
   Box,
   Dialog,
   IconButton,
@@ -16,18 +14,48 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Close, FiberManualRecord, Star } from "@mui/icons-material";
+import { Close, Star } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import miqImage from "../assets/miq.png";
 import stockPriceMaximizerImage from "../assets/stock-price-maximizer.png";
 import budgeteerImage from "../assets/budgeteer.png";
+import { monoStack } from "../theme";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+
+const TagChip = ({ label }: { label: string }) => (
+  <Box
+    sx={{
+      fontFamily: monoStack,
+      fontSize: "0.72rem",
+      fontWeight: 500,
+      color: "text.secondary",
+      px: 1,
+      py: 0.4,
+      borderRadius: 0.75,
+      border: "1px solid rgba(255,255,255,0.08)",
+      background: "rgba(255,255,255,0.02)",
+      transition: "all 0.2s ease",
+      "&:hover": {
+        color: "primary.main",
+        borderColor: "rgba(94, 234, 212, 0.35)",
+        background: "rgba(94, 234, 212, 0.06)",
+      },
+    }}
+  >
+    <Box component="span" sx={{ color: "text.disabled" }}>
+      [
+    </Box>
+    {label}
+    <Box component="span" sx={{ color: "text.disabled" }}>
+      ]
+    </Box>
+  </Box>
+);
 
 const Projects = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
@@ -73,114 +101,124 @@ const Projects = () => {
     },
   ];
 
+  const featuredTags = [
+    "Next.js",
+    "TypeScript",
+    "Prisma",
+    "OpenAI",
+    "Sentry",
+    "Material UI",
+    "PostgreSQL",
+  ];
+
   return (
     <Box
       id="projects"
       sx={{
-        pt: { xs: 8, md: 12 },
-        pb: { xs: 10, md: 15 },
-        minHeight: "100vh",
+        pt: { xs: 10, md: 14 },
+        pb: { xs: 10, md: 14 },
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        bgcolor: "background.paper",
         position: "relative",
-        overflow: "hidden",
+        bgcolor: "#12161f",
+        borderTop: "1px solid rgba(255,255,255,0.04)",
+        borderBottom: "1px solid rgba(255,255,255,0.04)",
         "&::before": {
           content: '""',
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "100%",
-          height: "100%",
+          width: "700px",
+          height: "700px",
           background:
-            "radial-gradient(circle at center, rgba(37, 99, 235, 0.03) 0%, transparent 80%)",
+            "radial-gradient(circle, rgba(94, 234, 212, 0.06) 0%, transparent 60%)",
+          filter: "blur(80px)",
           zIndex: 0,
         },
       }}
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Box sx={{ textAlign: "center", mb: { xs: 4, md: 8 } }}>
-          <Box
+        <Box sx={{ textAlign: "center", mb: { xs: 5, md: 8 } }}>
+          <Typography
             sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 1.5,
-              px: 2.5,
-              py: 1,
-              borderRadius: 50,
-              bgcolor: "rgba(37, 99, 235, 0.1)",
-              border: "1px solid rgba(37, 99, 235, 0.2)",
-              color: "primary.dark",
-              mb: 3,
+              fontFamily: monoStack,
+              fontSize: { xs: "0.8rem", md: "0.9rem" },
+              color: "text.secondary",
+              mb: 2,
             }}
           >
-            <Star sx={{ fontSize: 16 }} />
-            <Typography variant="subtitle2" fontWeight="800">
-              PORTFOLIO
-            </Typography>
-          </Box>
+            <Box component="span" sx={{ color: "text.disabled" }}>
+              ~/projects ${" "}
+            </Box>
+            <Box component="span" sx={{ color: "primary.main" }}>
+              ls ./featured
+            </Box>
+          </Typography>
           <Typography
             variant="h3"
             sx={{
               fontWeight: 900,
-              fontSize: { xs: "2.25rem", md: "3.5rem" },
-              letterSpacing: "-0.02em",
+              fontSize: { xs: "2.5rem", md: "3.5rem" },
               color: "text.primary",
+              letterSpacing: "-0.03em",
             }}
           >
-            Featured Work
+            Featured{" "}
+            <Box component="span" sx={{ color: "primary.main" }}>
+              Work
+            </Box>
           </Typography>
         </Box>
 
-        {/* FEATURED PROJECT: SPM - Upgraded to Light Design */}
         <Paper
           elevation={0}
           sx={{
-            mb: { xs: 12, md: 15 },
+            mb: { xs: 8, md: 12 },
             maxWidth: { md: "1100px" },
             mx: "auto",
-            borderRadius: 6,
-            border: "1px solid rgba(0, 0, 0, 0.05)",
-            background: "white",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.05)",
             position: "relative",
             overflow: "hidden",
             display: "flex",
             flexDirection: { xs: "column", sm: "row" },
             alignItems: "stretch",
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: "1px",
+              background:
+                "linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.5), transparent)",
+            },
           }}
         >
-          {/* Badge */}
           <Box
             sx={{
               position: "absolute",
-              top: { xs: 12, md: 25 },
-              left: { xs: 12, md: 25 },
-              display: "flex",
+              top: { xs: 12, md: 20 },
+              left: { xs: 12, md: 20 },
+              display: "inline-flex",
               alignItems: "center",
-              gap: { xs: 0.5, md: 1 },
-              bgcolor: "primary.main",
-              color: "white",
-              px: { xs: 1.2, md: 2 },
-              py: { xs: 0.4, md: 0.75 },
-              borderRadius: { xs: 1.5, md: 2 },
+              gap: 0.75,
+              fontFamily: monoStack,
+              fontSize: { xs: "0.65rem", md: "0.7rem" },
+              fontWeight: 700,
+              letterSpacing: "0.2em",
+              color: "primary.main",
+              px: 1.25,
+              py: 0.5,
+              borderRadius: 0.75,
+              background: "rgba(94, 234, 212, 0.08)",
+              border: "1px solid rgba(94, 234, 212, 0.25)",
               zIndex: 2,
-              boxShadow: "0 4px 12px rgba(37, 99, 235, 0.3)",
             }}
           >
-            <Star sx={{ fontSize: { xs: 14, md: 18 } }} />
-            <Typography
-              variant="subtitle2"
-              fontWeight="800"
-              sx={{ fontSize: { xs: "0.65rem", md: "0.875rem" } }}
-            >
-              FEATURED PROJECT
-            </Typography>
+            <Star sx={{ fontSize: 12 }} />
+            FEATURED
           </Box>
 
-          {/* Image Container */}
           <Box
             onClick={() => handleOpenImage(stockPriceMaximizerImage)}
             sx={{
@@ -191,9 +229,15 @@ const Projects = () => {
               display: "flex",
               alignItems: "stretch",
               justifyContent: "center",
-              bgcolor: "background.default",
-              borderRight: { sm: "1px solid rgba(0,0,0,0.05)" },
+              borderRight: {
+                sm: "1px solid rgba(255,255,255,0.06)",
+              },
+              borderBottom: {
+                xs: "1px solid rgba(255,255,255,0.06)",
+                sm: "none",
+              },
               position: "relative",
+              background: "rgba(0,0,0,0.3)",
             }}
           >
             <Box
@@ -206,15 +250,19 @@ const Projects = () => {
                 objectFit: "cover",
                 objectPosition: "41% center",
                 transition: "transform 0.5s ease",
-                "&:hover": { transform: "scale(1.05)" },
+                filter: "brightness(0.9)",
+                "&:hover": {
+                  transform: "scale(1.03)",
+                  filter: "brightness(1)",
+                },
               }}
             />
           </Box>
 
-          {/* Content Container */}
           <Box
             sx={{
-              p: { xs: 3, md: 6 },
+              p: { xs: 3, md: 5 },
+              pt: { xs: 6, md: 6 },
               width: { xs: "100%", sm: "55%" },
               display: "flex",
               flexDirection: "column",
@@ -223,67 +271,72 @@ const Projects = () => {
           >
             <Typography
               variant="h4"
-              fontWeight="900"
-              gutterBottom
-              sx={{ color: "text.primary" }}
+              sx={{
+                fontWeight: 900,
+                color: "text.primary",
+                letterSpacing: "-0.02em",
+                fontSize: { xs: "1.6rem", md: "2rem" },
+                mb: 1.5,
+              }}
             >
               Stock Price Maximizer
             </Typography>
             <Typography
-              variant="h6"
-              fontWeight="600"
               sx={{
                 mb: 3,
                 color: "text.secondary",
-                lineHeight: 1.4,
-                fontSize: { xs: "1.1rem", md: "1.3rem" },
+                lineHeight: 1.6,
+                fontSize: { xs: "0.95rem", md: "1.05rem" },
               }}
             >
               AI-powered platform that analyzes SEC filings and generates
               simplified financial insights.
             </Typography>
 
-            <Box sx={{ mb: 4 }}>
+            <Box sx={{ mb: 3 }}>
               <Typography
-                variant="body1"
-                sx={{ fontSize: { md: "1.1rem" }, color: "text.secondary" }}
+                sx={{
+                  fontFamily: monoStack,
+                  fontSize: "0.7rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.15em",
+                  color: "primary.main",
+                  mb: 1.5,
+                  textTransform: "uppercase",
+                }}
               >
-                <strong>Problem:</strong> Complex financial filings are
-                difficult to interpret.
-                <br />
-                <strong>Solution:</strong> Built an AI system that generates
-                simplified, actionable insights.
-              </Typography>
-            </Box>
-
-            <Box sx={{ mb: 4 }}>
-              <Typography
-                variant="h6"
-                fontWeight="800"
-                sx={{ mb: 1.5, color: "primary.main" }}
-              >
-                Key Contributions
+                # key contributions
               </Typography>
               <List disablePadding>
                 {[
                   "Designed full-stack architecture using Next.js, Prisma, and PostgreSQL",
                   "Integrated OpenAI to automate data extraction and summarization",
                   "Implemented efficient server-side data processing pipelines",
-                  "Optimized backend performance to handle large financial datasets efficiently, reducing processing time for key operations.",
+                  "Optimized backend performance to handle large financial datasets efficiently",
                 ].map((text, i) => (
-                  <ListItem key={i} sx={{ px: 0, py: 0.5 }}>
-                    <ListItemIcon sx={{ minWidth: 32 }}>
-                      <FiberManualRecord
-                        sx={{ fontSize: 10, color: "primary.main" }}
-                      />
+                  <ListItem key={i} sx={{ px: 0, py: 0.4 }}>
+                    <ListItemIcon sx={{ minWidth: 22 }}>
+                      <Box
+                        component="span"
+                        sx={{
+                          fontFamily: monoStack,
+                          color: "primary.main",
+                          fontWeight: 700,
+                        }}
+                      >
+                        &gt;
+                      </Box>
                     </ListItemIcon>
                     <ListItemText
                       primary={text}
                       slotProps={{
                         primary: {
-                          variant: "body1",
-                          fontWeight: 500,
-                          sx: { color: "text.primary" },
+                          variant: "body2",
+                          sx: {
+                            color: "text.secondary",
+                            fontSize: "0.9rem",
+                            lineHeight: 1.6,
+                          },
                         },
                       }}
                     />
@@ -292,31 +345,11 @@ const Projects = () => {
               </List>
             </Box>
 
-            <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
-              {[
-                "Next.js",
-                "TypeScript",
-                "Prisma",
-                "OpenAI",
-                "Sentry",
-                "Material UI",
-                "PostgreSQL",
-              ].map((tag) => (
-                <Chip
-                  key={tag}
-                  label={tag}
-                  sx={{
-                    fontWeight: 700,
-                    borderRadius: 2,
-                    bgcolor: "rgba(37, 99, 235, 0.05)",
-                    color: "primary.main",
-                    border: "1px solid rgba(37, 99, 235, 0.1)",
-                    px: 1,
-                    py: 2,
-                  }}
-                />
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75 }}>
+              {featuredTags.map((tag) => (
+                <TagChip key={tag} label={tag} />
               ))}
-            </Stack>
+            </Box>
           </Box>
         </Paper>
 
@@ -324,14 +357,17 @@ const Projects = () => {
           variant="h4"
           textAlign="center"
           sx={{
-            mb: { xs: 4, md: 8 },
+            mb: { xs: 4, md: 6 },
             fontWeight: 900,
-            fontSize: { xs: "1.75rem", md: "2.5rem" },
+            fontSize: { xs: "1.75rem", md: "2.25rem" },
             letterSpacing: "-0.02em",
             color: "text.primary",
           }}
         >
-          More Projects
+          More{" "}
+          <Box component="span" sx={{ color: "primary.main" }}>
+            Projects
+          </Box>
         </Typography>
 
         <Swiper
@@ -349,37 +385,47 @@ const Projects = () => {
           onSwiper={setSwiperInstance}
           style={
             {
-              padding: "10px 0 40px 0",
-              "--swiper-navigation-color": "#2563eb",
-              "--swiper-pagination-color": "#2563eb",
-              "--swiper-navigation-size": "24px",
-            } as any
+              padding: "10px 0 50px 0",
+              "--swiper-navigation-color": "#5eead4",
+              "--swiper-pagination-color": "#5eead4",
+              "--swiper-pagination-bullet-inactive-color": "#ffffff",
+              "--swiper-pagination-bullet-inactive-opacity": "0.35",
+              "--swiper-pagination-bullet-size": "10px",
+              "--swiper-navigation-size": "22px",
+            } as React.CSSProperties
           }
         >
-          {otherProjects.map((project, index) => (
-            <SwiperSlide key={index}>
+          {otherProjects.map((project) => (
+            <SwiperSlide key={project.title}>
               <Card
                 onMouseEnter={() => swiperInstance?.autoplay.stop()}
                 onMouseLeave={() => swiperInstance?.autoplay.start()}
+                elevation={0}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   overflow: "hidden",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
-                  border: "1px solid rgba(0,0,0,0.05)",
-                  background: "white",
-                  mx: { xs: 0, sm: 2, md: 8 },
-                  height: { xs: "auto", md: 650 },
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  background: "#12131a",
+                  borderRadius: 1.5,
+                  mx: { xs: 0, sm: 2, md: 6 },
+                  height: { xs: "auto", md: 620 },
+                  transition: "border-color 0.3s ease",
+                  "&:hover": {
+                    borderColor: "rgba(94, 234, 212, 0.25)",
+                  },
                 }}
               >
                 <Box
                   onClick={() => handleOpenImage(project.image)}
                   sx={{
                     width: "100%",
-                    height: { xs: 240, sm: 320, md: 400 },
+                    height: { xs: 240, sm: 320, md: 380 },
                     overflow: "hidden",
                     display: "flex",
                     cursor: "pointer",
+                    background: "rgba(0,0,0,0.3)",
+                    borderBottom: "1px solid rgba(255,255,255,0.06)",
                   }}
                 >
                   <CardMedia
@@ -392,7 +438,11 @@ const Projects = () => {
                       objectFit: "cover",
                       objectPosition: "top",
                       transition: "transform 0.5s ease",
-                      "&:hover": { transform: "scale(1.05)" },
+                      filter: "brightness(0.9)",
+                      "&:hover": {
+                        transform: "scale(1.03)",
+                        filter: "brightness(1)",
+                      },
                     }}
                   />
                 </Box>
@@ -405,20 +455,24 @@ const Projects = () => {
                   }}
                 >
                   <Typography
-                    gutterBottom
                     variant="h4"
-                    fontWeight="900"
                     sx={{
-                      fontSize: { xs: "1.5rem", md: "1.85rem" },
+                      fontWeight: 900,
+                      fontSize: { xs: "1.4rem", md: "1.65rem" },
                       color: "text.primary",
+                      letterSpacing: "-0.02em",
+                      mb: 1,
                     }}
                   >
                     {project.title}
                   </Typography>
                   <Typography
-                    variant="h6"
-                    fontWeight="600"
-                    sx={{ mb: 1.5, color: "text.secondary", fontSize: "1rem" }}
+                    sx={{
+                      mb: 2,
+                      color: "text.secondary",
+                      fontSize: "0.95rem",
+                      lineHeight: 1.55,
+                    }}
                   >
                     {project.summary}
                   </Typography>
@@ -426,10 +480,18 @@ const Projects = () => {
                   <List dense disablePadding sx={{ mb: 2 }}>
                     {project.points.map((point, i) => (
                       <ListItem key={i} sx={{ px: 0, py: 0.25 }}>
-                        <ListItemIcon sx={{ minWidth: 20 }}>
-                          <FiberManualRecord
-                            sx={{ fontSize: 6, color: "primary.main" }}
-                          />
+                        <ListItemIcon sx={{ minWidth: 18 }}>
+                          <Box
+                            component="span"
+                            sx={{
+                              fontFamily: monoStack,
+                              color: "primary.main",
+                              fontSize: "0.85rem",
+                              fontWeight: 700,
+                            }}
+                          >
+                            &gt;
+                          </Box>
                         </ListItemIcon>
                         <ListItemText
                           primary={point}
@@ -438,7 +500,8 @@ const Projects = () => {
                               variant: "body2",
                               sx: {
                                 color: "text.secondary",
-                                fontSize: "0.85rem",
+                                fontSize: "0.82rem",
+                                lineHeight: 1.55,
                               },
                             },
                           }}
@@ -447,30 +510,17 @@ const Projects = () => {
                     ))}
                   </List>
 
-                  <Box sx={{ mt: "auto" }}>
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      flexWrap="wrap"
-                      useFlexGap
-                    >
-                      {project.tags.map((tag) => (
-                        <Chip
-                          key={tag}
-                          label={tag}
-                          variant="outlined"
-                          size="small"
-                          sx={{
-                            fontWeight: 700,
-                            borderRadius: 1.5,
-                            px: 1,
-                            fontSize: "0.65rem",
-                            color: "primary.main",
-                            borderColor: "rgba(37, 99, 235, 0.2)",
-                          }}
-                        />
-                      ))}
-                    </Stack>
+                  <Box
+                    sx={{
+                      mt: "auto",
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: 0.75,
+                    }}
+                  >
+                    {project.tags.map((tag) => (
+                      <TagChip key={tag} label={tag} />
+                    ))}
                   </Box>
                 </CardContent>
               </Card>
@@ -479,7 +529,6 @@ const Projects = () => {
         </Swiper>
       </Container>
 
-      {/* Image Lightbox */}
       <Dialog
         open={!!selectedImage}
         onClose={handleCloseImage}
@@ -491,6 +540,7 @@ const Projects = () => {
               boxShadow: "none",
               overflow: "hidden",
               m: { xs: 1, md: 4 },
+              border: "none",
             },
           },
         }}
@@ -508,9 +558,9 @@ const Projects = () => {
               position: "absolute",
               top: 10,
               right: 10,
-              bgcolor: "rgba(0,0,0,0.5)",
-              color: "white",
-              "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
+              bgcolor: "rgba(0,0,0,0.6)",
+              color: "primary.main",
+              "&:hover": { bgcolor: "rgba(0,0,0,0.8)" },
               zIndex: 10,
             }}
           >
@@ -523,8 +573,8 @@ const Projects = () => {
               maxWidth: "100%",
               maxHeight: "90vh",
               objectFit: "contain",
-              borderRadius: 2,
-              boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+              borderRadius: 1,
+              boxShadow: "0 20px 60px rgba(0,0,0,0.7)",
             }}
           />
         </Box>

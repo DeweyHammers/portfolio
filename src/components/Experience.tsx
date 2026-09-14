@@ -3,327 +3,311 @@ import {
   Typography,
   Container,
   Paper,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Grid,
-  Chip,
 } from "@mui/material";
-import {
-  Work,
-  Code,
-  Storage,
-  Speed,
-  RocketLaunch,
-  Psychology,
-} from "@mui/icons-material";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
+import { monoStack } from "../theme";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+type Job = {
+  company: string;
+  role: string;
+  location: string;
+  period: string;
+  bullets: string[];
+  tech?: string[];
+};
+
+const experiences: Job[] = [
+  {
+    company: "Vons",
+    role: "Deli Clerk",
+    location: "Oakhurst, CA, USA",
+    period: "May 2026 – Present",
+    bullets: [
+      "Serve 50+ customers per shift in a high-volume deli, handling made-to-order prep, slicing, and case management while maintaining order accuracy during peak periods.",
+    ],
+  },
+  {
+    company: "Ksense Technology Group",
+    role: "Full-Stack Software Engineer",
+    location: "Remote",
+    period: "Dec 2021 – Jan 2026",
+    bullets: [
+      "Built and maintained 10 production full-stack applications in TypeScript, Next.js, and Node.js, reducing load times on data-heavy interfaces through query optimization and render-path improvements.",
+      "Developed and optimized APIs and database queries using Prisma and PostgreSQL, improving API response times by up to 40% and reducing overall backend load.",
+      "Implemented server-side filtering, sorting, and pagination to replace client-side handling, keeping response times under 10ms across datasets of 1000+ records.",
+    ],
+    tech: [
+      "TypeScript",
+      "Next.js",
+      "Node.js",
+      "Prisma",
+      "PostgreSQL",
+      "GitLab",
+      "Sentry",
+      "Google Gemini & CLI",
+      "OpenAI",
+    ],
+  },
+  {
+    company: "Raley's",
+    role: "Courtesy Clerk / Deli / Night Crew",
+    location: "Oakhurst, CA",
+    period: "Sep 2013 – Nov 2021",
+    bullets: [
+      "Rotated across three departments over 8 years, covering 5 shifts per week and stepping into short-notice coverage to keep departments staffed through peak and overnight hours.",
+    ],
+  },
+];
 
 const Experience = () => {
-  const experiences = [
-    {
-      company: "Ksense Technology Group",
-      role: "Remote Full Stack Software Engineer",
-      period: "Dec 2021 – Jan 2026",
-      tech: [
-        "Next.js",
-        "TypeScript",
-        "Prisma",
-        "PostgreSQL",
-        "GitLab",
-        "Sentry",
-        "Google Gemini & CLI",
-        "OpenAI",
-      ],
-      achievements: [
-        {
-          icon: <Code color="primary" />,
-          text: "Built and maintained scalable full-stack applications using TypeScript, Next.js, and Node.js, optimizing performance for data-heavy interfaces.",
-        },
-        {
-          icon: <Storage color="primary" />,
-          text: "Developed and optimized APIs and database queries using Prisma and PostgreSQL, improving API response times by up to 40% and reducing overall backend load.",
-        },
-        {
-          icon: <Psychology color="primary" />,
-          text: "Used AI tools to accelerate development, troubleshoot issues, and refine implementation strategies.",
-        },
-        {
-          icon: <Speed color="primary" />,
-          text: "Implemented server-side processing for filtering, sorting, and pagination, ensuring scalable handling of large datasets.",
-        },
-      ],
-    },
-    {
-      company: "Raley's",
-      role: "Courtesy Clerk | Deli Clerk | Night Crew",
-      period: "Sept 2013 – Nov 2021",
-      tech: ["Customer Service", "Operations", "Teamwork", "Problem Solving"],
-      achievements: [
-        {
-          icon: <Work color="primary" />,
-          text: "Demonstrated reliability and strong work ethic over an 8-year tenure in a fast-paced retail environment.",
-        },
-        {
-          icon: <RocketLaunch color="primary" />,
-          text: "Delivered consistent customer service in a high-volume environment, contributing to customer retention.",
-        },
-        {
-          icon: <Speed color="primary" />,
-          text: "Worked across multiple roles in a fast-paced environment, building strong problem-solving and teamwork skills.",
-        },
-      ],
-    },
-  ];
-
   return (
     <Box
       id="experience"
       sx={{
-        pt: { xs: 12, md: 15 },
-        pb: { xs: 15, md: 25 },
-        minHeight: "100vh",
+        pt: { xs: 10, md: 14 },
+        pb: { xs: 10, md: 14 },
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        bgcolor: "background.paper",
         position: "relative",
-        overflow: "hidden",
+        bgcolor: "#12161f",
+        borderTop: "1px solid rgba(255,255,255,0.04)",
+        borderBottom: "1px solid rgba(255,255,255,0.04)",
         "&::before": {
           content: '""',
           position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "1px",
+          top: "10%",
+          right: "5%",
+          width: "500px",
+          height: "500px",
           background:
-            "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)",
+            "radial-gradient(circle, rgba(251, 191, 36, 0.05) 0%, transparent 70%)",
+          filter: "blur(70px)",
+          zIndex: 0,
         },
       }}
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Box sx={{ textAlign: "center", mb: 8 }}>
-          <Box
+        <Box sx={{ textAlign: "center", mb: 6 }}>
+          <Typography
             sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 1.5,
-              px: 2.5,
-              py: 1,
-              borderRadius: 50,
-              bgcolor: "rgba(37, 99, 235, 0.1)",
-              border: "1px solid rgba(37, 99, 235, 0.2)",
-              color: "primary.dark",
-              mb: 3,
+              fontFamily: monoStack,
+              fontSize: { xs: "0.8rem", md: "0.9rem" },
+              color: "text.secondary",
+              mb: 2,
             }}
           >
-            <Work sx={{ fontSize: 16 }} />
-            <Typography
-              variant="subtitle2"
-              fontWeight="800"
-              letterSpacing="0.05em"
-            >
-              EXPERIENCE
-            </Typography>
-          </Box>
+            <Box component="span" sx={{ color: "text.disabled" }}>
+              ~/experience ${" "}
+            </Box>
+            <Box component="span" sx={{ color: "primary.main" }}>
+              git log --oneline
+            </Box>
+          </Typography>
           <Typography
             variant="h3"
-            gutterBottom
             sx={{
               fontWeight: 900,
               fontSize: { xs: "2.5rem", md: "3.5rem" },
               color: "text.primary",
+              mb: 2,
             }}
           >
-            Professional Journey
+            Professional{" "}
+            <Box component="span" sx={{ color: "primary.main" }}>
+              History
+            </Box>
           </Typography>
         </Box>
 
-        <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={30}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          style={
-            {
-              padding: "10px 0 40px 0",
-              "--swiper-navigation-color": "#2563eb",
-              "--swiper-pagination-color": "#2563eb",
-              "--swiper-navigation-size": "24px",
-            } as any
-          }
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: { xs: 2.5, md: 3 },
+            maxWidth: 1000,
+            mx: "auto",
+          }}
         >
-          {experiences.map((exp, index) => (
-            <SwiperSlide key={index}>
+          {experiences.map((job, index) => (
+            <motion.div
+              key={job.company}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08 }}
+            >
               <Paper
                 elevation={0}
                 sx={{
-                  p: { xs: 2.5, sm: 4, md: 6 },
-                  mx: { xs: 0, sm: 2, md: 8 },
-                  border: "1px solid rgba(0,0,0,0.05)",
-                  background: "white",
+                  p: { xs: 3, md: 4 },
                   position: "relative",
                   overflow: "hidden",
-                  minHeight: { xs: "0", md: 450 },
-                  height: { xs: 750, sm: 650, md: "100%" },
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  boxShadow: "0 10px 30px -5px rgba(0,0,0,0.05)",
+                  transition: "all 0.25s ease",
+                  "&:hover": {
+                    borderColor: "rgba(94, 234, 212, 0.25)",
+                  },
                   "&::before": {
                     content: '""',
                     position: "absolute",
                     top: 0,
                     left: 0,
-                    width: "6px",
+                    width: "3px",
                     height: "100%",
-                    bgcolor: index === 0 ? "primary.main" : "secondary.main",
+                    background:
+                      "linear-gradient(180deg, #5eead4, transparent)",
                   },
                 }}
               >
-                <Grid container spacing={{ xs: 2, md: 6 }} alignItems="center">
-                  <Grid size={{ xs: 12, md: 8 }}>
-                    <Box
+                <Grid container spacing={{ xs: 2, md: 4 }}>
+                  <Grid size={{ xs: 12, md: 4 }}>
+                    <Typography
+                      variant="h5"
                       sx={{
-                        mb: { xs: 2, md: 3 },
-                        textAlign: { xs: "center", md: "left" },
+                        fontWeight: 800,
+                        letterSpacing: "-0.02em",
+                        color: "text.primary",
+                        fontSize: { xs: "1.15rem", md: "1.3rem" },
+                        lineHeight: 1.2,
+                        mb: 0.75,
                       }}
                     >
-                      <Typography
-                        variant="h4"
-                        fontWeight="900"
-                        sx={{
-                          fontSize: { xs: "1.25rem", md: "2.25rem" },
-                          letterSpacing: "-0.02em",
-                          mb: 0.5,
-                          color: "text.primary",
-                        }}
-                      >
-                        {exp.company}
-                      </Typography>
-                      <Typography
-                        variant="h6"
-                        fontWeight="800"
-                        sx={{
-                          mb: 1,
-                          fontSize: { xs: "0.9rem", md: "1.25rem" },
-                          color: "primary.main",
-                        }}
-                      >
-                        {exp.period}
-                      </Typography>
-                      <Typography
-                        variant="h6"
-                        fontWeight="700"
-                        sx={{
-                          fontSize: { xs: "0.85rem", md: "1.1rem" },
-                          color: "text.secondary",
-                        }}
-                      >
-                        {exp.role}
-                      </Typography>
-                    </Box>
-                    <List sx={{ p: 0 }}>
-                      {exp.achievements.map((item, i) => (
-                        <ListItem
-                          key={i}
-                          sx={{ px: 0, py: 0.5, alignItems: "flex-start" }}
-                        >
-                          <ListItemIcon
-                            sx={{
-                              minWidth: { xs: 24, md: 32 },
-                              mt: 0.5,
-                              color: "primary.main",
-                            }}
-                          >
-                            {item.icon}
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Typography
-                                variant="body1"
-                                fontWeight={500}
-                                lineHeight={1.4}
-                                sx={{
-                                  fontSize: { xs: "0.85rem", md: "1rem" },
-                                  color: "text.primary",
-                                }}
-                              >
-                                {item.text}
-                              </Typography>
-                            }
-                          />
-                        </ListItem>
-                      ))}
-                    </List>
+                      {job.company}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontFamily: monoStack,
+                        color: "text.secondary",
+                        fontSize: { xs: "0.8rem", md: "0.85rem" },
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {job.role}
+                    </Typography>
                   </Grid>
 
-                  <Grid size={{ xs: 12, md: 4 }}>
-                    <Box
+                  <Grid size={{ xs: 12, md: 8 }}>
+                    <Typography
                       sx={{
-                        bgcolor: "rgba(0,0,0,0.02)",
-                        p: { xs: 2, md: 4 },
-                        borderRadius: 4,
-                        border: "1px solid rgba(0,0,0,0.05)",
+                        fontFamily: monoStack,
+                        fontSize: { xs: "0.72rem", md: "0.78rem" },
+                        color: "primary.main",
+                        letterSpacing: "0.05em",
+                        mb: 1.5,
                       }}
                     >
-                      <Typography
-                        variant="overline"
-                        fontWeight="900"
-                        gutterBottom
-                        sx={{
-                          display: "block",
-                          color: "text.secondary",
-                          mb: 1.5,
-                          letterSpacing: "0.1em",
-                          textAlign: { xs: "center", md: "left" },
-                          fontSize: "0.7rem",
-                        }}
+                      {job.period}
+                      <Box
+                        component="span"
+                        sx={{ color: "text.disabled", mx: 1 }}
                       >
-                        Core Expertise
-                      </Typography>
+                        ·
+                      </Box>
+                      <Box
+                        component="span"
+                        sx={{ color: "text.secondary" }}
+                      >
+                        {job.location}
+                      </Box>
+                    </Typography>
+
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 1,
+                      }}
+                    >
+                      {job.bullets.map((text, i) => (
+                        <Box
+                          key={i}
+                          sx={{
+                            display: "flex",
+                            alignItems: "flex-start",
+                            gap: 1,
+                          }}
+                        >
+                          <Box
+                            component="span"
+                            sx={{
+                              fontFamily: monoStack,
+                              color: "primary.main",
+                              fontWeight: 700,
+                              fontSize: { xs: "0.85rem", md: "0.9rem" },
+                              lineHeight: 1.7,
+                              flexShrink: 0,
+                            }}
+                          >
+                            &gt;
+                          </Box>
+                          <Typography
+                            sx={{
+                              color: "text.secondary",
+                              fontSize: { xs: "0.85rem", md: "0.92rem" },
+                              lineHeight: 1.65,
+                            }}
+                          >
+                            {text}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Box>
+
+                    {job.tech && job.tech.length > 0 && (
                       <Box
                         sx={{
+                          mt: 2.5,
+                          pt: 2.5,
+                          borderTop: "1px solid rgba(255,255,255,0.06)",
                           display: "flex",
                           flexWrap: "wrap",
-                          gap: 1,
-                          justifyContent: { xs: "center", md: "flex-start" },
+                          gap: 0.75,
                         }}
                       >
-                        {exp.tech.map((t) => (
-                          <Chip
+                        {job.tech.map((t) => (
+                          <Box
                             key={t}
-                            label={t}
-                            size="small"
                             sx={{
-                              bgcolor: "white",
-                              fontWeight: 700,
+                              fontFamily: monoStack,
                               fontSize: "0.7rem",
-                              color: "text.primary",
-                              border: "1px solid rgba(0,0,0,0.1)",
+                              fontWeight: 500,
+                              color: "text.secondary",
+                              px: 1,
+                              py: 0.4,
+                              borderRadius: 0.75,
+                              border: "1px solid rgba(255,255,255,0.08)",
+                              background: "rgba(255,255,255,0.02)",
+                              transition: "all 0.2s ease",
                               "&:hover": {
-                                bgcolor: "primary.main",
-                                color: "white",
+                                color: "primary.main",
+                                borderColor: "rgba(94, 234, 212, 0.35)",
+                                background: "rgba(94, 234, 212, 0.06)",
                               },
                             }}
-                          />
+                          >
+                            <Box
+                              component="span"
+                              sx={{ color: "text.disabled" }}
+                            >
+                              [
+                            </Box>
+                            {t}
+                            <Box
+                              component="span"
+                              sx={{ color: "text.disabled" }}
+                            >
+                              ]
+                            </Box>
+                          </Box>
                         ))}
                       </Box>
-                    </Box>
+                    )}
                   </Grid>
                 </Grid>
               </Paper>
-            </SwiperSlide>
+            </motion.div>
           ))}
-        </Swiper>
+        </Box>
       </Container>
     </Box>
   );

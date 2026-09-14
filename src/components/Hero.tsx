@@ -8,10 +8,11 @@ import {
   Avatar,
   Grid,
 } from "@mui/material";
-import { GitHub, Email } from "@mui/icons-material";
+import { GitHub, Email, ArrowForward } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
 import profilePic from "../assets/me.jpg";
+import { monoStack } from "../theme";
 
 const Hero = () => {
   return (
@@ -21,49 +22,47 @@ const Hero = () => {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        bgcolor: "background.default",
         position: "relative",
         overflow: "hidden",
         "&::before": {
           content: '""',
           position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          inset: 0,
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
-          backgroundSize: "40px 40px",
-          zIndex: 0,
-        },
-        "&::after": {
-          content: '""',
-          position: "absolute",
-          top: "10%",
-          right: "5%",
-          width: "500px",
-          height: "500px",
-          background:
-            "radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%)",
-          filter: "blur(60px)",
+            "linear-gradient(rgba(94, 234, 212, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.03) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 40%, transparent 80%)",
           zIndex: 0,
         },
       }}
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Box
-          sx={{
-            py: { xs: 12, md: 8 },
-          }}
-        >
+        <Box sx={{ py: { xs: 12, md: 8 } }}>
           <Grid container spacing={6} alignItems="center">
-            {/* LEFT SIDE: Name & Tagline */}
             <Grid size={{ xs: 12, md: 7 }}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.6 }}
               >
+                <Typography
+                  sx={{
+                    fontFamily: monoStack,
+                    fontSize: { xs: "0.85rem", md: "1rem" },
+                    color: "text.secondary",
+                    mb: 3,
+                    textAlign: { xs: "center", md: "left" },
+                  }}
+                >
+                  <Box component="span" sx={{ color: "text.disabled" }}>
+                    ~/portfolio ${" "}
+                  </Box>
+                  <Box component="span" sx={{ color: "primary.main" }}>
+                    whoami
+                  </Box>
+                </Typography>
+
                 <Typography
                   variant="h1"
                   component="h1"
@@ -72,32 +71,51 @@ const Hero = () => {
                     fontSize: { xs: "3rem", sm: "4.5rem", md: "5.5rem" },
                     lineHeight: 1,
                     mb: 3,
-                    letterSpacing: "-0.04em",
+                    letterSpacing: "-0.05em",
                     background:
-                      "linear-gradient(135deg, #0f172a 0%, #2563eb 100%)",
+                      "linear-gradient(135deg, #e6edf3 0%, #5eead4 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     textAlign: { xs: "center", md: "left" },
+                    display: { xs: "block", md: "inline-block" },
                   }}
                 >
                   Richard <br /> Dewey <br /> Hammers
                 </Typography>
+                <Box
+                  component="span"
+                  sx={{
+                    "@keyframes blink": {
+                      "0%, 49%": { opacity: 1 },
+                      "50%, 100%": { opacity: 0 },
+                    },
+                    display: "inline-block",
+                    width: { xs: "0.5em", md: "0.55em" },
+                    height: { xs: "0.9em", md: "1em" },
+                    bgcolor: "primary.main",
+                    ml: 1,
+                    verticalAlign: "baseline",
+                    animation: "blink 1s step-end infinite",
+                    boxShadow: "0 0 12px rgba(94, 234, 212, 0.5)",
+                  }}
+                />
 
                 <Typography
-                  variant="h4"
-                  component="h2"
                   sx={{
-                    fontWeight: 700,
-                    fontSize: { xs: "1.1rem", md: "1.75rem" },
+                    fontFamily: monoStack,
+                    fontWeight: 600,
+                    fontSize: { xs: "0.95rem", md: "1.15rem" },
                     color: "primary.main",
-                    mb: 4,
+                    mt: 4,
+                    mb: 3,
                     textAlign: { xs: "center", md: "left" },
-                    maxWidth: "600px",
-                    lineHeight: 1.3,
+                    letterSpacing: "-0.01em",
                   }}
                 >
-                  Full-Stack Engineer building scalable, <br />
-                  high-performance web applications
+                  <Box component="span" sx={{ color: "text.disabled" }}>
+                    &gt;{" "}
+                  </Box>
+                  Full-Stack Engineer moving into Cybersecurity
                 </Typography>
 
                 <Typography
@@ -105,17 +123,18 @@ const Hero = () => {
                   sx={{
                     color: "text.secondary",
                     mb: 6,
-                    maxWidth: "700px",
-                    lineHeight: 1.8,
-                    fontSize: { xs: "1rem", md: "1.125rem" },
+                    maxWidth: "640px",
+                    lineHeight: 1.75,
+                    fontSize: { xs: "0.95rem", md: "1.05rem" },
                     textAlign: { xs: "center", md: "left" },
                     mx: { xs: "auto", md: 0 },
                   }}
                 >
-                  I work primarily with TypeScript, Next.js, and PostgreSQL, and
-                  have spent the last 4+ years building and shipping production
-                  applications, including systems that integrate AI features
-                  into real-world workflows.
+                  I've spent 4+ years building and shipping production web
+                  applications in TypeScript, Next.js, and PostgreSQL. Now I'm
+                  working toward the Flatiron School Cybersecurity Professional
+                  Certificate to move into cybersecurity, alongside a DevOps
+                  track from Boot.dev.
                 </Typography>
 
                 <Stack
@@ -129,13 +148,7 @@ const Hero = () => {
                       variant="contained"
                       size="large"
                       fullWidth
-                      sx={{
-                        boxShadow: "0 10px 20px -5px rgba(37, 99, 235, 0.3)",
-                        "&:hover": {
-                          boxShadow: "0 15px 25px -5px rgba(37, 99, 235, 0.4)",
-                          transform: "translateY(-2px)",
-                        },
-                      }}
+                      endIcon={<ArrowForward />}
                     >
                       View Projects
                     </Button>
@@ -151,15 +164,6 @@ const Hero = () => {
                       size="large"
                       fullWidth
                       startIcon={<GitHub />}
-                      sx={{
-                        borderColor: "rgba(0,0,0,0.1)",
-                        color: "text.primary",
-                        "&:hover": {
-                          borderColor: "primary.main",
-                          bgcolor: "rgba(37, 99, 235, 0.02)",
-                          transform: "translateY(-2px)",
-                        },
-                      }}
                     >
                       GitHub
                     </Button>
@@ -174,15 +178,6 @@ const Hero = () => {
                       size="large"
                       fullWidth
                       startIcon={<Email />}
-                      sx={{
-                        borderColor: "rgba(0,0,0,0.1)",
-                        color: "text.primary",
-                        "&:hover": {
-                          borderColor: "primary.main",
-                          bgcolor: "rgba(37, 99, 235, 0.02)",
-                          transform: "translateY(-2px)",
-                        },
-                      }}
                     >
                       Email
                     </Button>
@@ -191,12 +186,11 @@ const Hero = () => {
               </motion.div>
             </Grid>
 
-            {/* RIGHT SIDE: Profile Image */}
             <Grid size={{ xs: 12, md: 5 }}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
               >
                 <Box
                   sx={{
@@ -205,26 +199,27 @@ const Hero = () => {
                     justifyContent: "center",
                   }}
                 >
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      width: { xs: 320, md: 440 },
+                      height: { xs: 320, md: 440 },
+                      borderRadius: "50%",
+                      background:
+                        "radial-gradient(circle, rgba(94, 234, 212, 0.15) 0%, transparent 65%)",
+                      filter: "blur(30px)",
+                      zIndex: 0,
+                    }}
+                  />
                   <Avatar
                     src={profilePic}
                     sx={{
                       width: { xs: 280, md: 400 },
                       height: { xs: 280, md: 400 },
-                      border: "8px solid white",
-                      boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)",
+                      border: "2px solid rgba(94, 234, 212, 0.3)",
+                      boxShadow:
+                        "0 0 0 6px rgba(94, 234, 212, 0.06), 0 30px 60px -20px rgba(0,0,0,0.8)",
                       zIndex: 1,
-                    }}
-                  />
-                  {/* Decorative background element */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      width: "110%",
-                      height: "110%",
-                      borderRadius: "50%",
-                      background:
-                        "radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%)",
-                      zIndex: 0,
                     }}
                   />
                 </Box>

@@ -1,15 +1,26 @@
 import { Box, Typography, Container, Stack, IconButton } from "@mui/material";
 import { GitHub, LinkedIn, Email } from "@mui/icons-material";
+import { monoStack } from "../theme";
 
 const Footer = () => {
   return (
     <Box
       component="footer"
       sx={{
-        py: 6,
+        py: 5,
         mt: "auto",
-        backgroundColor: "background.default",
-        borderTop: "1px solid rgba(0,0,0,0.05)",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        position: "relative",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: "20%",
+          right: "20%",
+          height: "1px",
+          background:
+            "linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.35), transparent)",
+        },
       }}
     >
       <Container maxWidth="lg">
@@ -20,33 +31,71 @@ const Footer = () => {
           spacing={2}
         >
           <Typography
-            variant="body2"
-            color="text.secondary"
             sx={{
+              fontFamily: monoStack,
+              color: "text.disabled",
+              fontSize: { xs: "0.7rem", sm: "0.75rem" },
               textAlign: { xs: "center", md: "left" },
-              fontSize: { xs: "0.75rem", sm: "0.875rem" },
             }}
           >
-            © {new Date().getFullYear()} Richard Dewey Hammers. Built with React
-            & MUI.
+            <Box component="span" sx={{ color: "primary.main" }}>
+              &gt;
+            </Box>{" "}
+            © {new Date().getFullYear()} Richard Dewey Hammers &nbsp;
+            <Box component="span" sx={{ color: "text.disabled" }}>
+              // built with React + MUI
+            </Box>
           </Typography>
-          <Stack direction="row" spacing={2} justifyContent="center">
+          <Stack direction="row" spacing={1} justifyContent="center">
             <IconButton
               href="https://github.com/DeweyHammers"
               target="_blank"
-              color="primary"
+              size="small"
+              sx={{
+                color: "text.secondary",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 1,
+                "&:hover": {
+                  color: "primary.main",
+                  borderColor: "rgba(94, 234, 212, 0.4)",
+                  background: "rgba(94, 234, 212, 0.05)",
+                },
+              }}
             >
-              <GitHub />
+              <GitHub fontSize="small" />
             </IconButton>
             <IconButton
               href="https://www.linkedin.com/in/richard-dewey-hammers/"
               target="_blank"
-              color="primary"
+              size="small"
+              sx={{
+                color: "text.secondary",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 1,
+                "&:hover": {
+                  color: "primary.main",
+                  borderColor: "rgba(94, 234, 212, 0.4)",
+                  background: "rgba(94, 234, 212, 0.05)",
+                },
+              }}
             >
-              <LinkedIn />
+              <LinkedIn fontSize="small" />
             </IconButton>
-            <IconButton href="mailto:hammersdrichard@gmail.com" color="primary">
-              <Email />
+            <IconButton
+              href="mailto:hammersdrichard@gmail.com"
+              size="small"
+              sx={{
+                color: "text.secondary",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 1,
+                "&:hover": {
+                  color: "primary.main",
+                  borderColor: "rgba(94, 234, 212, 0.4)",
+                  background: "rgba(94, 234, 212, 0.05)",
+                },
+              }}
+            >
+              <Email fontSize="small" />
             </IconButton>
           </Stack>
         </Stack>
