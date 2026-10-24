@@ -13,13 +13,16 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Button,
+  Link as MuiLink,
 } from "@mui/material";
-import { Close, Star } from "@mui/icons-material";
+import { Close, Star, GitHub, OpenInNew } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import miqImage from "../assets/miq.png";
 import stockPriceMaximizerImage from "../assets/stock-price-maximizer.png";
 import budgeteerImage from "../assets/budgeteer.png";
+import financesOsImage from "../assets/finances-os.png";
 import { monoStack } from "../theme";
 
 import "swiper/css";
@@ -66,6 +69,27 @@ const Projects = () => {
 
   const otherProjects = [
     {
+      title: "Stock Price Maximizer",
+      summary:
+        "AI-powered platform that analyzes SEC filings and generates simplified financial insights.",
+      points: [
+        "Designed full-stack architecture using Next.js, Prisma, and PostgreSQL",
+        "Integrated OpenAI to automate data extraction and summarization",
+        "Implemented efficient server-side data processing pipelines",
+        "Optimized backend performance to handle large financial datasets efficiently",
+      ],
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "OpenAI",
+        "Sentry",
+        "Material UI",
+        "PostgreSQL",
+      ],
+      image: stockPriceMaximizerImage,
+    },
+    {
       title: "MIQ Methane Registry",
       summary:
         "Web platform for tracking methane emissions and issuing compliance certificates across multiple facilities.",
@@ -102,13 +126,28 @@ const Projects = () => {
   ];
 
   const featuredTags = [
+    "Electron",
     "Next.js",
     "TypeScript",
     "Prisma",
-    "OpenAI",
-    "Sentry",
+    "SQLite",
+    "Refine",
     "Material UI",
-    "PostgreSQL",
+    "Vitest",
+    "Claude Code",
+  ];
+
+  const featuredLinks = [
+    {
+      label: "Source",
+      href: "https://github.com/DeweyHammers/finances-os",
+      icon: <GitHub />,
+    },
+    {
+      label: "Picture Tour",
+      href: "https://deweyhammers.github.io/finances-os/",
+      icon: <OpenInNew />,
+    },
   ];
 
   return (
@@ -220,7 +259,7 @@ const Projects = () => {
           </Box>
 
           <Box
-            onClick={() => handleOpenImage(stockPriceMaximizerImage)}
+            onClick={() => handleOpenImage(financesOsImage)}
             sx={{
               width: { xs: "100%", sm: "45%" },
               height: { xs: 260, sm: "auto" },
@@ -242,13 +281,13 @@ const Projects = () => {
           >
             <Box
               component="img"
-              src={stockPriceMaximizerImage}
-              alt="Stock Price Maximizer"
+              src={financesOsImage}
+              alt="Finances OS cash flow overview showing five pay weeks"
               sx={{
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                objectPosition: "41% center",
+                objectPosition: "28% top",
                 transition: "transform 0.5s ease",
                 filter: "brightness(0.9)",
                 "&:hover": {
@@ -279,7 +318,7 @@ const Projects = () => {
                 mb: 1.5,
               }}
             >
-              Stock Price Maximizer
+              Finances OS
             </Typography>
             <Typography
               sx={{
@@ -289,8 +328,9 @@ const Projects = () => {
                 fontSize: { xs: "0.95rem", md: "1.05rem" },
               }}
             >
-              AI-powered platform that analyzes SEC filings and generates
-              simplified financial insights.
+              Desktop cash-flow workstation that plans each paycheck against
+              the month&apos;s bills: zero-based budgeting, per-account
+              ledgers, and pay-period math driven by the real calendar.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
@@ -309,10 +349,10 @@ const Projects = () => {
               </Typography>
               <List disablePadding>
                 {[
-                  "Designed full-stack architecture using Next.js, Prisma, and PostgreSQL",
-                  "Integrated OpenAI to automate data extraction and summarization",
-                  "Implemented efficient server-side data processing pipelines",
-                  "Optimized backend performance to handle large financial datasets efficiently",
+                  "Architected an Electron + Next.js desktop app over a local SQLite database with Prisma and a loopback-only API",
+                  "Built the zero-based Plan: per-pay-week auto-assign, cumulative top-up for split bills, and one-click Sync Plan drift repair",
+                  "Designed the auto-balance engine that attributes bills to pay periods and spreads split costs into genuinely spare cash",
+                  "Shipped solo with Claude Code as an AI pair programmer; Vitest suite gates every push and the installer ships a clean template database",
                 ].map((text, i) => (
                   <ListItem key={i} sx={{ px: 0, py: 0.4 }}>
                     <ListItemIcon sx={{ minWidth: 22 }}>
@@ -345,9 +385,25 @@ const Projects = () => {
               </List>
             </Box>
 
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75 }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75, mb: 3 }}>
               {featuredTags.map((tag) => (
                 <TagChip key={tag} label={tag} />
+              ))}
+            </Box>
+
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
+              {featuredLinks.map((link) => (
+                <MuiLink
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  underline="none"
+                >
+                  <Button variant="outlined" size="small" startIcon={link.icon}>
+                    {link.label}
+                  </Button>
+                </MuiLink>
               ))}
             </Box>
           </Box>

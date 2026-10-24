@@ -40,6 +40,7 @@ const skillGroups = [
     category: "AI",
     icon: <Psychology sx={{ fontSize: 24 }} />,
     skills: [
+      "Claude & Claude Code",
       "Google Gemini & CLI",
       "OpenAI",
       "Prompt Engineering",
