@@ -33,6 +33,7 @@ const experiences: Job[] = [
     location: "Remote",
     period: "Dec 2021 – Jan 2026",
     bullets: [
+      "Triaged incoming bug reports and supported clients and teammates in troubleshooting and resolving issues.",
       "Built and maintained 10 production full-stack applications in TypeScript, Next.js, and Node.js, reducing load times on data-heavy interfaces through query optimization and render-path improvements.",
       "Developed and optimized APIs and database queries using Prisma and PostgreSQL, improving API response times by up to 40% and reducing overall backend load.",
       "Implemented server-side filtering, sorting, and pagination to replace client-side handling, keeping response times under 10ms across datasets of 1000+ records.",
