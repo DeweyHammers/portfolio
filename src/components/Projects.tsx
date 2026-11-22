@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
   Box,
+  Grid,
   Dialog,
   IconButton,
   Paper,
@@ -17,18 +18,12 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import { Close, Star, GitHub, OpenInNew } from "@mui/icons-material";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { motion } from "framer-motion";
 import miqImage from "../assets/miq.png";
 import stockPriceMaximizerImage from "../assets/stock-price-maximizer.png";
 import budgeteerImage from "../assets/budgeteer.png";
 import financesOsImage from "../assets/finances-os.png";
 import { monoStack } from "../theme";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 
 const TagChip = ({ label }: { label: string }) => (
   <Box
@@ -61,7 +56,6 @@ const TagChip = ({ label }: { label: string }) => (
 );
 
 const Projects = () => {
-  const [swiperInstance, setSwiperInstance] = useState<any>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const handleOpenImage = (image: string) => setSelectedImage(image);
@@ -129,11 +123,14 @@ const Projects = () => {
     "Electron",
     "Next.js",
     "TypeScript",
-    "Prisma",
     "SQLite",
+    "libSQL",
+    "Turso",
+    "Prisma",
     "Refine",
     "Material UI",
     "Vitest",
+    "GitHub Actions",
     "Claude Code",
   ];
 
@@ -249,7 +246,8 @@ const Projects = () => {
               px: 1.25,
               py: 0.5,
               borderRadius: 0.75,
-              background: "rgba(94, 234, 212, 0.08)",
+              // Opaque so the badge stays readable over the screenshot.
+              background: "#10201f",
               border: "1px solid rgba(94, 234, 212, 0.25)",
               zIndex: 2,
             }}
@@ -328,9 +326,10 @@ const Projects = () => {
                 fontSize: { xs: "0.95rem", md: "1.05rem" },
               }}
             >
-              Desktop cash-flow workstation that plans each paycheck against
-              the month&apos;s bills: zero-based budgeting, per-account
-              ledgers, and pay-period math driven by the real calendar.
+              Local-first desktop cash-flow workstation that plans each
+              paycheck against the month&apos;s bills: zero-based budgeting,
+              per-account ledgers, pay-period math driven by the real
+              calendar, and opt-in sync to a cloud database you own.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
@@ -349,13 +348,17 @@ const Projects = () => {
               </Typography>
               <List disablePadding>
                 {[
-                  "Architected an Electron + Next.js desktop app over a local SQLite database with Prisma and a loopback-only API",
-                  "Built the zero-based Plan: per-pay-week auto-assign, cumulative top-up for split bills, and one-click Sync Plan drift repair",
-                  "Designed the auto-balance engine that attributes bills to pay periods and spreads split costs into genuinely spare cash",
-                  "Shipped solo with Claude Code as an AI pair programmer; Vitest suite gates every push and the installer ships a clean template database",
+                  "Architected an Electron + Next.js desktop app on a shared SQLite data layer, behind a local API locked to loopback with Origin and Host checks",
+                  "Built local-first sync: writes land locally at once, then push and pull in the background to a user-owned Turso database, with explicit conflict handling",
+                  "Designed the Optimize engine: it plans 36 months of pay weeks in memory, pre-saves for early-month bills, and re-runs by itself as one batch write whenever an input changes",
+                  "Added Sandbox mode for what-if planning: the whole app switches to a copy of the database, then you discard it or keep it with an automatic backup",
+                  "Shipped solo with Claude Code as an AI pair programmer; the Vitest suite gates every push and runs again in GitHub Actions",
                 ].map((text, i) => (
-                  <ListItem key={i} sx={{ px: 0, py: 0.4 }}>
-                    <ListItemIcon sx={{ minWidth: 22 }}>
+                  <ListItem
+                    key={i}
+                    sx={{ px: 0, py: 0.4, alignItems: "flex-start" }}
+                  >
+                    <ListItemIcon sx={{ minWidth: 22, mt: 0.5 }}>
                       <Box
                         component="span"
                         sx={{
@@ -426,163 +429,147 @@ const Projects = () => {
           </Box>
         </Typography>
 
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay, EffectFade]}
-          spaceBetween={30}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{
-            delay: 6000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          loop={otherProjects.length > 1}
-          onSwiper={setSwiperInstance}
-          style={
-            {
-              padding: "10px 0 50px 0",
-              "--swiper-navigation-color": "#5eead4",
-              "--swiper-pagination-color": "#5eead4",
-              "--swiper-pagination-bullet-inactive-color": "#ffffff",
-              "--swiper-pagination-bullet-inactive-opacity": "0.35",
-              "--swiper-pagination-bullet-size": "10px",
-              "--swiper-navigation-size": "22px",
-            } as React.CSSProperties
-          }
-        >
-          {otherProjects.map((project) => (
-            <SwiperSlide key={project.title}>
-              <Card
-                onMouseEnter={() => swiperInstance?.autoplay.stop()}
-                onMouseLeave={() => swiperInstance?.autoplay.start()}
-                elevation={0}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  background: "#12131a",
-                  borderRadius: 1.5,
-                  mx: { xs: 0, sm: 2, md: 6 },
-                  height: { xs: "auto", md: 620 },
-                  transition: "border-color 0.3s ease",
-                  "&:hover": {
-                    borderColor: "rgba(94, 234, 212, 0.25)",
-                  },
-                }}
+        <Grid container spacing={3}>
+          {otherProjects.map((project, index) => (
+            <Grid size={{ xs: 12, md: 4 }} key={project.title}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                style={{ height: "100%" }}
               >
-                <Box
-                  onClick={() => handleOpenImage(project.image)}
+                <Card
+                  elevation={0}
                   sx={{
-                    width: "100%",
-                    height: { xs: 240, sm: 320, md: 380 },
-                    overflow: "hidden",
-                    display: "flex",
-                    cursor: "pointer",
-                    background: "rgba(0,0,0,0.3)",
-                    borderBottom: "1px solid rgba(255,255,255,0.06)",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image={project.image}
-                    alt={project.title}
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "top",
-                      transition: "transform 0.5s ease",
-                      filter: "brightness(0.9)",
-                      "&:hover": {
-                        transform: "scale(1.03)",
-                        filter: "brightness(1)",
-                      },
-                    }}
-                  />
-                </Box>
-                <CardContent
-                  sx={{
-                    flexGrow: 1,
-                    p: { xs: 3, md: 4 },
                     display: "flex",
                     flexDirection: "column",
+                    overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    background: "#12131a",
+                    borderRadius: 1.5,
+                    height: "100%",
+                    transition: "border-color 0.3s ease",
+                    "&:hover": {
+                      borderColor: "rgba(94, 234, 212, 0.25)",
+                    },
                   }}
                 >
-                  <Typography
-                    variant="h4"
-                    sx={{
-                      fontWeight: 900,
-                      fontSize: { xs: "1.4rem", md: "1.65rem" },
-                      color: "text.primary",
-                      letterSpacing: "-0.02em",
-                      mb: 1,
-                    }}
-                  >
-                    {project.title}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      mb: 2,
-                      color: "text.secondary",
-                      fontSize: "0.95rem",
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {project.summary}
-                  </Typography>
-
-                  <List dense disablePadding sx={{ mb: 2 }}>
-                    {project.points.map((point, i) => (
-                      <ListItem key={i} sx={{ px: 0, py: 0.25 }}>
-                        <ListItemIcon sx={{ minWidth: 18 }}>
-                          <Box
-                            component="span"
-                            sx={{
-                              fontFamily: monoStack,
-                              color: "primary.main",
-                              fontSize: "0.85rem",
-                              fontWeight: 700,
-                            }}
-                          >
-                            &gt;
-                          </Box>
-                        </ListItemIcon>
-                        <ListItemText
-                          primary={point}
-                          slotProps={{
-                            primary: {
-                              variant: "body2",
-                              sx: {
-                                color: "text.secondary",
-                                fontSize: "0.82rem",
-                                lineHeight: 1.55,
-                              },
-                            },
-                          }}
-                        />
-                      </ListItem>
-                    ))}
-                  </List>
-
                   <Box
+                    onClick={() => handleOpenImage(project.image)}
                     sx={{
-                      mt: "auto",
+                      width: "100%",
+                      height: { xs: 220, sm: 300, md: 190 },
+                      overflow: "hidden",
                       display: "flex",
-                      flexWrap: "wrap",
-                      gap: 0.75,
+                      cursor: "pointer",
+                      background: "rgba(0,0,0,0.3)",
+                      borderBottom: "1px solid rgba(255,255,255,0.06)",
                     }}
                   >
-                    {project.tags.map((tag) => (
-                      <TagChip key={tag} label={tag} />
-                    ))}
+                    <CardMedia
+                      component="img"
+                      image={project.image}
+                      alt={project.title}
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "top",
+                        transition: "transform 0.5s ease",
+                        filter: "brightness(0.9)",
+                        "&:hover": {
+                          transform: "scale(1.03)",
+                          filter: "brightness(1)",
+                        },
+                      }}
+                    />
                   </Box>
-                </CardContent>
-              </Card>
-            </SwiperSlide>
+                  <CardContent
+                    sx={{
+                      flexGrow: 1,
+                      p: 3,
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        fontWeight: 900,
+                        fontSize: "1.35rem",
+                        color: "text.primary",
+                        letterSpacing: "-0.02em",
+                        mb: 1,
+                      }}
+                    >
+                      {project.title}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        mb: 2,
+                        color: "text.secondary",
+                        fontSize: "0.95rem",
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {project.summary}
+                    </Typography>
+
+                    <List dense disablePadding sx={{ mb: 2 }}>
+                      {project.points.map((point, i) => (
+                        <ListItem
+                          key={i}
+                          sx={{ px: 0, py: 0.25, alignItems: "flex-start" }}
+                        >
+                          <ListItemIcon sx={{ minWidth: 18, mt: 0.5 }}>
+                            <Box
+                              component="span"
+                              sx={{
+                                fontFamily: monoStack,
+                                color: "primary.main",
+                                fontSize: "0.85rem",
+                                fontWeight: 700,
+                              }}
+                            >
+                              &gt;
+                            </Box>
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={point}
+                            slotProps={{
+                              primary: {
+                                variant: "body2",
+                                sx: {
+                                  color: "text.secondary",
+                                  fontSize: "0.82rem",
+                                  lineHeight: 1.55,
+                                },
+                              },
+                            }}
+                          />
+                        </ListItem>
+                      ))}
+                    </List>
+
+                    <Box
+                      sx={{
+                        mt: "auto",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 0.75,
+                      }}
+                    >
+                      {project.tags.map((tag) => (
+                        <TagChip key={tag} label={tag} />
+                      ))}
+                    </Box>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Grid>
           ))}
-        </Swiper>
+        </Grid>
       </Container>
 
       <Dialog
@@ -622,17 +609,20 @@ const Projects = () => {
           >
             <Close />
           </IconButton>
-          <Box
-            component="img"
-            src={selectedImage || ""}
-            sx={{
-              maxWidth: "100%",
-              maxHeight: "90vh",
-              objectFit: "contain",
-              borderRadius: 1,
-              boxShadow: "0 20px 60px rgba(0,0,0,0.7)",
-            }}
-          />
+          {selectedImage && (
+            <Box
+              component="img"
+              src={selectedImage}
+              alt="Enlarged project screenshot"
+              sx={{
+                maxWidth: "100%",
+                maxHeight: "90vh",
+                objectFit: "contain",
+                borderRadius: 1,
+                boxShadow: "0 20px 60px rgba(0,0,0,0.7)",
+              }}
+            />
+          )}
         </Box>
       </Dialog>
     </Box>

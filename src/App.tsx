@@ -1,7 +1,9 @@
 import { ThemeProvider, CssBaseline, Box } from "@mui/material";
 import theme from "./theme";
+import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Skills from "./components/Skills";
+import HomeLab from "./components/HomeLab";
 import Learning from "./components/Learning";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
@@ -23,12 +25,14 @@ function App() {
         }}
       >
         <Box sx={{ position: "relative", zIndex: 1 }}>
+          <Navbar />
           <Hero />
           <Skills />
-          <Learning />
+          <HomeLab />
           <Experience />
-          <Education />
+          <Learning />
           <Projects />
+          <Education />
           <Footer />
         </Box>
       </Box>

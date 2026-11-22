@@ -7,14 +7,76 @@ import {
   Psychology,
   Cloud,
   Code,
+  Lan,
+  DesktopWindows,
+  Shield,
 } from "@mui/icons-material";
+import type { ReactNode } from "react";
 import { monoStack } from "../theme";
 
-const skillGroups = [
+type SkillGroup = {
+  category: string;
+  icon: ReactNode;
+  skills: string[];
+  // Where the skills come from, shown when it isn't production work.
+  source?: string;
+};
+
+const skillGroups: SkillGroup[] = [
+  {
+    category: "Networking",
+    icon: <Lan sx={{ fontSize: 24 }} />,
+    source: "home lab + coursework",
+    skills: [
+      "UniFi",
+      "VLANs",
+      "Zone-Based Firewall",
+      "Dual-WAN Failover",
+      "Policy-Based Routing",
+      "Wi-Fi Tuning",
+      "DNS & DHCP",
+      "Subnetting",
+      "Wireshark",
+      "pfSense",
+    ],
+  },
+  {
+    category: "Systems & IT Support",
+    icon: <DesktopWindows sx={{ fontSize: 24 }} />,
+    source: "home lab + coursework",
+    skills: [
+      "Windows Troubleshooting",
+      "Event Viewer",
+      "Sysinternals",
+      "PowerShell",
+      "Linux CLI",
+      "Ubuntu Server",
+      "Kali Linux",
+      "VirtualBox",
+      "Docker",
+    ],
+  },
+  {
+    category: "Security",
+    icon: <Shield sx={{ fontSize: 24 }} />,
+    source: "coursework labs",
+    skills: [
+      "System Hardening",
+      "CIS Benchmarks",
+      "Lynis",
+      "IDS/IPS",
+      "Active Directory Hardening",
+      "Threat Intelligence",
+      "MITRE ATT&CK",
+      "Cyber Kill Chain",
+      "AlienVault OTX",
+      "Risk Assessment",
+    ],
+  },
   {
     category: "Languages",
     icon: <Code sx={{ fontSize: 24 }} />,
-    skills: ["TypeScript", "JavaScript", "Python"],
+    skills: ["TypeScript", "JavaScript", "Python", "Go"],
   },
   {
     category: "Frontend",
@@ -120,7 +182,9 @@ const Skills = () => {
               fontSize: { xs: "0.95rem", md: "1.05rem" },
             }}
           >
-            Production-grade tools I've shipped with over the last 4+ years.
+            The networking, systems and security tools I use in my home lab
+            and coursework, alongside the stack I've shipped production
+            software with for 4+ years.
           </Typography>
         </Box>
 
@@ -132,6 +196,7 @@ const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
+                style={{ height: "100%" }}
               >
                 <Paper
                   elevation={0}
@@ -171,17 +236,31 @@ const Skills = () => {
                     >
                       {group.icon}
                     </Box>
-                    <Typography
-                      sx={{
-                        fontFamily: monoStack,
-                        fontWeight: 700,
-                        fontSize: "0.95rem",
-                        color: "text.primary",
-                        letterSpacing: "-0.01em",
-                      }}
-                    >
-                      {group.category}
-                    </Typography>
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontFamily: monoStack,
+                          fontWeight: 700,
+                          fontSize: "0.95rem",
+                          color: "text.primary",
+                          letterSpacing: "-0.01em",
+                        }}
+                      >
+                        {group.category}
+                      </Typography>
+                      {group.source && (
+                        <Typography
+                          sx={{
+                            fontFamily: monoStack,
+                            fontSize: "0.68rem",
+                            color: "text.disabled",
+                            mt: 0.25,
+                          }}
+                        >
+                          # {group.source}
+                        </Typography>
+                      )}
+                    </Box>
                   </Box>
 
                   <Box

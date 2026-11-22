@@ -34,14 +34,8 @@ const Education = () => {
     year: string;
     image?: string;
   }[] = [
-    {
-      institution: "Flatiron School",
-      degree: "Cybersecurity Professional Certificate",
-      description:
-        "Multi-course program covering networking fundamentals, security operations, offensive security, and incident response — building toward a career transition into cybersecurity.",
-      certTitle: "Certificate",
-      year: "In Progress",
-    },
+    // The in-progress Cybersecurity certificate lives in the Currently
+    // Learning section; add it here, with its image, once it is awarded.
     {
       institution: "Flatiron School",
       degree: "Full Stack Web Development",
@@ -66,6 +60,10 @@ const Education = () => {
     <Box
       id="education"
       sx={{
+        // On phones the arrows sit on top of the card; swipe and dots remain.
+        "& .swiper-button-prev, & .swiper-button-next": {
+          display: { xs: "none", sm: "flex" },
+        },
         pt: { xs: 10, md: 14 },
         pb: { xs: 10, md: 14 },
         display: "flex",
@@ -136,7 +134,7 @@ const Education = () => {
             } as React.CSSProperties
           }
         >
-          {educationData.map((edu, index) => (
+          {educationData.map((edu) => (
             <SwiperSlide key={`${edu.institution}-${edu.degree}`}>
               <Paper
                 elevation={0}
@@ -153,7 +151,7 @@ const Education = () => {
                     width: "3px",
                     height: "100%",
                     background:
-                      index === 0
+                      edu.year === "In Progress"
                         ? "linear-gradient(180deg, #fbbf24, transparent)"
                         : "linear-gradient(180deg, #5eead4, transparent)",
                   },
@@ -355,17 +353,20 @@ const Education = () => {
           >
             <Close />
           </IconButton>
-          <Box
-            component="img"
-            src={selectedImage || ""}
-            sx={{
-              maxWidth: "100%",
-              maxHeight: "90vh",
-              objectFit: "contain",
-              borderRadius: 1,
-              boxShadow: "0 20px 60px rgba(0,0,0,0.7)",
-            }}
-          />
+          {selectedImage && (
+            <Box
+              component="img"
+              src={selectedImage}
+              alt="Enlarged certificate"
+              sx={{
+                maxWidth: "100%",
+                maxHeight: "90vh",
+                objectFit: "contain",
+                borderRadius: 1,
+                boxShadow: "0 20px 60px rgba(0,0,0,0.7)",
+              }}
+            />
+          )}
         </Box>
       </Dialog>
     </Box>

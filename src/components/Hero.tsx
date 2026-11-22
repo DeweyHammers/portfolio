@@ -8,7 +8,13 @@ import {
   Avatar,
   Grid,
 } from "@mui/material";
-import { GitHub, Email, ArrowForward } from "@mui/icons-material";
+import {
+  GitHub,
+  LinkedIn,
+  Email,
+  ArrowForward,
+  Description,
+} from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
 import profilePic from "../assets/me.jpg";
@@ -63,42 +69,51 @@ const Hero = () => {
                   </Box>
                 </Typography>
 
-                <Typography
-                  variant="h1"
-                  component="h1"
+                {/* Name and cursor share one line box so the cursor follows
+                    "Hammers" at every width instead of wrapping below it. */}
+                <Box
                   sx={{
-                    fontWeight: 900,
-                    fontSize: { xs: "3rem", sm: "4.5rem", md: "5.5rem" },
-                    lineHeight: 1,
-                    mb: 3,
-                    letterSpacing: "-0.05em",
-                    background:
-                      "linear-gradient(135deg, #e6edf3 0%, #5eead4 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
                     textAlign: { xs: "center", md: "left" },
-                    display: { xs: "block", md: "inline-block" },
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  Richard <br /> Dewey <br /> Hammers
-                </Typography>
-                <Box
-                  component="span"
-                  sx={{
-                    "@keyframes blink": {
-                      "0%, 49%": { opacity: 1 },
-                      "50%, 100%": { opacity: 0 },
-                    },
-                    display: "inline-block",
-                    width: { xs: "0.5em", md: "0.55em" },
-                    height: { xs: "0.9em", md: "1em" },
-                    bgcolor: "primary.main",
-                    ml: 1,
-                    verticalAlign: "baseline",
-                    animation: "blink 1s step-end infinite",
-                    boxShadow: "0 0 12px rgba(94, 234, 212, 0.5)",
-                  }}
-                />
+                  <Typography
+                    variant="h1"
+                    component="h1"
+                    sx={{
+                      fontWeight: 900,
+                      fontSize: { xs: "3rem", sm: "4.5rem", md: "5.5rem" },
+                      lineHeight: 1,
+                      mb: 3,
+                      letterSpacing: "-0.05em",
+                      background:
+                        "linear-gradient(135deg, #e6edf3 0%, #5eead4 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      textAlign: { xs: "center", md: "left" },
+                      display: "inline-block",
+                    }}
+                  >
+                    Richard <br /> Dewey <br /> Hammers
+                  </Typography>
+                  <Box
+                    component="span"
+                    sx={{
+                      "@keyframes blink": {
+                        "0%, 49%": { opacity: 1 },
+                        "50%, 100%": { opacity: 0 },
+                      },
+                      display: "inline-block",
+                      width: { xs: "0.5em", md: "0.55em" },
+                      height: { xs: "0.9em", md: "1em" },
+                      bgcolor: "primary.main",
+                      ml: 1,
+                      verticalAlign: "baseline",
+                      animation: "blink 1s step-end infinite",
+                      boxShadow: "0 0 12px rgba(94, 234, 212, 0.5)",
+                    }}
+                  />
+                </Box>
 
                 <Typography
                   sx={{
@@ -115,7 +130,7 @@ const Hero = () => {
                   <Box component="span" sx={{ color: "text.disabled" }}>
                     &gt;{" "}
                   </Box>
-                  Full-Stack Engineer moving into Cybersecurity
+                  Full-Stack Engineer moving into IT Support &amp; Cybersecurity
                 </Typography>
 
                 <Typography
@@ -131,15 +146,18 @@ const Hero = () => {
                   }}
                 >
                   I've spent 4+ years building and shipping production web
-                  applications in TypeScript, Next.js, and PostgreSQL. Now I'm
+                  applications in TypeScript, Next.js, and PostgreSQL, on top of
+                  8+ years of customer-facing work. Now I'm looking to start in
+                  IT support and help desk as my way into cybersecurity, while
                   working toward the Flatiron School Cybersecurity Professional
-                  Certificate to move into cybersecurity, alongside a DevOps
-                  track from Boot.dev.
+                  Certificate and a DevOps track from Boot.dev.
                 </Typography>
 
                 <Stack
                   direction={{ xs: "column", sm: "row" }}
                   spacing={2}
+                  useFlexGap
+                  flexWrap="wrap"
                   justifyContent={{ xs: "center", md: "flex-start" }}
                   alignItems={{ xs: "stretch", sm: "center" }}
                 >
@@ -155,6 +173,32 @@ const Hero = () => {
                   </ScrollLink>
 
                   <MuiLink
+                    href="/Richard-Dewey-Hammers-Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    underline="none"
+                  >
+                    <Button
+                      variant="outlined"
+                      size="large"
+                      fullWidth
+                      startIcon={<Description />}
+                    >
+                      Résumé
+                    </Button>
+                  </MuiLink>
+
+                  {/* Row break on wider screens: actions above, links below. */}
+                  <Box
+                    aria-hidden
+                    sx={{
+                      display: { xs: "none", sm: "block" },
+                      flexBasis: "100%",
+                      height: 0,
+                    }}
+                  />
+
+                  <MuiLink
                     href="https://github.com/DeweyHammers"
                     target="_blank"
                     underline="none"
@@ -166,6 +210,22 @@ const Hero = () => {
                       startIcon={<GitHub />}
                     >
                       GitHub
+                    </Button>
+                  </MuiLink>
+
+                  <MuiLink
+                    href="https://www.linkedin.com/in/richard-dewey-hammers/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    underline="none"
+                  >
+                    <Button
+                      variant="outlined"
+                      size="large"
+                      fullWidth
+                      startIcon={<LinkedIn />}
+                    >
+                      LinkedIn
                     </Button>
                   </MuiLink>
 

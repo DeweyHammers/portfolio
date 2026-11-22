@@ -50,6 +50,8 @@ const Footer = () => {
             <IconButton
               href="https://github.com/DeweyHammers"
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile"
               size="small"
               sx={{
                 color: "text.secondary",
@@ -67,6 +69,8 @@ const Footer = () => {
             <IconButton
               href="https://www.linkedin.com/in/richard-dewey-hammers/"
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
               size="small"
               sx={{
                 color: "text.secondary",
@@ -83,6 +87,7 @@ const Footer = () => {
             </IconButton>
             <IconButton
               href="mailto:hammersdrichard@gmail.com"
+              aria-label="Send email"
               size="small"
               sx={{
                 color: "text.secondary",

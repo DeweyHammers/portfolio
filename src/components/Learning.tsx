@@ -8,7 +8,7 @@ const learningTracks = [
     program: "Flatiron School",
     title: "Cybersecurity Professional Certificate",
     description:
-      "Multi-course program covering networking fundamentals, security operations, offensive security, and incident response. Hands-on labs across Linux, Python, SIEM tooling, and industry-standard pen testing tools.",
+      "Multi-course program covering networking fundamentals, security operations, offensive security, and incident response. Hands-on labs across Linux, Python, SIEM tooling, and industry-standard pen testing tools. Courses completed so far include system hardening and threat intelligence.",
     icon: <Security sx={{ fontSize: 28 }} />,
     topics: [
       "Networking (TCP/IP, DNS, Subnetting)",
@@ -109,7 +109,7 @@ const Learning = () => {
             }}
           >
             Actively working through both programs to move from full-stack
-            engineering into cybersecurity.
+            engineering into IT support and cybersecurity.
           </Typography>
         </Box>
 
@@ -121,6 +121,7 @@ const Learning = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
+                style={{ height: "100%" }}
               >
                 <Paper
                   elevation={0}

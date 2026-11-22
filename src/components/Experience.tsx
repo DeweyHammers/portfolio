@@ -21,7 +21,7 @@ const experiences: Job[] = [
   {
     company: "Vons",
     role: "Deli Clerk",
-    location: "Oakhurst, CA, USA",
+    location: "Oakhurst, CA",
     period: "May 2026 – Present",
     bullets: [
       "Serve 50+ customers per shift in a high-volume deli, handling made-to-order prep, slicing, and case management while maintaining order accuracy during peak periods.",
